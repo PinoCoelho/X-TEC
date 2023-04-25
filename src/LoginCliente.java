@@ -1,13 +1,3 @@
-/* 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-
-import javax.swing.*;
-*/
 public class LoginCliente extends javax.swing.JFrame 
 {
 
@@ -55,12 +45,10 @@ public class LoginCliente extends javax.swing.JFrame
         usernameLabel.setText("Introduzca su User Name");
 
         usernameTextField.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); 
-        //usernameTextField.setText("User Name");
 
         contraLabel.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); 
         contraLabel.setText("Introduzca su contraseña");
 
-        //contraField.setText("jPasswordField1");
         contraField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contraFieldActionPerformed(evt);

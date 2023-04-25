@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class LoginAdmin extends javax.swing.JFrame 
 {
 
@@ -24,6 +26,8 @@ public class LoginAdmin extends javax.swing.JFrame
         contraAdminField = new javax.swing.JPasswordField();
         aceptarAdminButton = new javax.swing.JButton();
         volverAdminButton = new javax.swing.JButton();
+        
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +45,11 @@ public class LoginAdmin extends javax.swing.JFrame
 
         aceptarAdminButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); 
         aceptarAdminButton.setText("Login");
+        aceptarAdminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarAdminButtonActionPerformed(evt);
+            }
+        });
 
         volverAdminButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); 
         volverAdminButton.setText("Volver");
@@ -98,7 +107,28 @@ public class LoginAdmin extends javax.swing.JFrame
         );
 
         pack();
-    }                       
+    }
+    private void aceptarAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
+    {                                                 
+        if (evt.getSource() == aceptarAdminButton)
+        {
+            String user = "PinoCoelho";
+            String contra = "Pino";
+            String texto = usernameAdminTextField.getText();
+            char[] contratexto = contraAdminField.getPassword();
+            String password = new String(contratexto);
+            if (texto.equals(user) && password.equals(contra))
+            {
+                MasterApp master = new MasterApp();
+                master.setVisible(true);
+                master.setLocationRelativeTo(null);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "El nombre de usuario o contraseña no coincide.\n Por favor inténtelo nuevamente", "Datos incorrectos", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
+    }                    
 
     private void volverAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                 

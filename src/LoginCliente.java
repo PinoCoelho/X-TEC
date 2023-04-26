@@ -79,6 +79,11 @@ public class LoginCliente extends javax.swing.JFrame
 
         aceptarButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); 
         aceptarButton.setText("Login");
+        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginClient(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,5 +172,13 @@ public class LoginCliente extends javax.swing.JFrame
             admin.setLocationRelativeTo(null);
             this.setVisible(false);
         }
-    }                                             
+    }
+    private void LoginClient(java.awt.event.ActionEvent evt){
+        if (evt.getSource() == aceptarButton){
+            ClientApp client = new ClientApp();
+            client.setVisible(true);
+            client.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }
+    }
 }

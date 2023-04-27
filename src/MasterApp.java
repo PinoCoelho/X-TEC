@@ -132,7 +132,10 @@ public class MasterApp extends javax.swing.JFrame
 
     private void editarPlatillosButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                      
-        
+            ElimEditPlatillos elimEdit = new ElimEditPlatillos();
+            elimEdit.setVisible(true);
+            elimEdit.setLocationRelativeTo(null);
+            this.setVisible(false);
     }                                                     
 
     private void visualizarPedidosButtonActionPerformed(java.awt.event.ActionEvent evt) 

@@ -173,7 +173,10 @@ public class AddAdmin extends javax.swing.JFrame {
 
     private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                             
-        
+        EditAdmin edit = new EditAdmin();
+        edit.setVisible(true);
+        edit.setLocationRelativeTo(null);
+        this.setVisible(false);
     }                                            
 
     private void volverAddButtonActionPerformed(java.awt.event.ActionEvent evt) 

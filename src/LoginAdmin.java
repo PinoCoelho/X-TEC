@@ -110,34 +110,30 @@ public class LoginAdmin extends javax.swing.JFrame
     }
     private void aceptarAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                 
-        if (evt.getSource() == aceptarAdminButton)
+        String user = "PinoCoelho";
+        String contra = "Pino";
+        String texto = usernameAdminTextField.getText();
+        char[] contratexto = contraAdminField.getPassword();
+        String password = new String(contratexto);
+        if (texto.equals(user) && password.equals(contra))
         {
-            String user = "PinoCoelho";
-            String contra = "Pino";
-            String texto = usernameAdminTextField.getText();
-            char[] contratexto = contraAdminField.getPassword();
-            String password = new String(contratexto);
-            if (texto.equals(user) && password.equals(contra))
-            {
-                MasterApp master = new MasterApp();
-                master.setVisible(true);
-                master.setLocationRelativeTo(null);
-                this.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(null, "El nombre de usuario o contraseña no coincide.\n Por favor inténtelo nuevamente", "Datos incorrectos", JOptionPane.ERROR_MESSAGE);
-            }
-            
+            MasterApp master = new MasterApp();
+            master.setVisible(true);
+            master.setLocationRelativeTo(null);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "El nombre de usuario o contraseña no coincide.\n Por favor inténtelo nuevamente", "Datos incorrectos", JOptionPane.ERROR_MESSAGE);
         }
+            
+        
     }                    
 
     private void volverAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                 
-        if (evt.getSource() == volverAdminButton){
-            LoginCliente cliente = new LoginCliente();
-            cliente.setVisible(true);
-            cliente.setLocationRelativeTo(null);
-            this.setVisible(false);
-        }
+        LoginCliente cliente = new LoginCliente();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.setVisible(false);
     }                                                
     public static void main(String args[]) 
     {

@@ -108,18 +108,16 @@ public class Register extends javax.swing.JFrame
 
     private void volverRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                     
-        if (evt.getSource() == volverRegisterButton)
-        {
-            LoginCliente cliente = new LoginCliente();
-            cliente.setVisible(true);
-            cliente.setLocationRelativeTo(null);
-            this.setVisible(false);
-        } 
+        LoginCliente cliente = new LoginCliente();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.setVisible(false);
     }                                                   
 
     private void aceptarRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                      
-        
+        usernameRegisterTextField.setText("");
+        contraRegisterField.setText("");
     }                                                     
 
     public static void main(String args[]) {

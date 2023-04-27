@@ -116,22 +116,18 @@ public class MasterApp extends javax.swing.JFrame
 
     private void agregarAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                   
-        if (evt.getSource() == agregarAdminButton){
-            AddAdmin add = new AddAdmin();
-            add.setVisible(true);
-            add.setLocationRelativeTo(null);
-            this.setVisible(false);
-        }
+        AddAdmin add = new AddAdmin();
+        add.setVisible(true);
+        add.setLocationRelativeTo(null);
+        this.setVisible(false);
     }                                                  
 
     private void agregarPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                      
-        if (evt.getSource() == agregarPlatilloButton){
-            AddPlatillo addPlatillo = new AddPlatillo();
-            addPlatillo.setVisible(true);
-            addPlatillo.setLocationRelativeTo(null);
-            this.setVisible(false);
-        }
+        AddPlatillo addPlatillo = new AddPlatillo();
+        addPlatillo.setVisible(true);
+        addPlatillo.setLocationRelativeTo(null);
+        this.setVisible(false);
     }                                                     
 
     private void editarPlatillosButtonActionPerformed(java.awt.event.ActionEvent evt) 
@@ -146,12 +142,10 @@ public class MasterApp extends javax.swing.JFrame
 
     private void salirAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                 
-        if (evt.getSource() == salirAdminButton){
-            LoginCliente cliente = new LoginCliente();
-            cliente.setVisible(true);
-            cliente.setLocationRelativeTo(null);
-            this.setVisible(false);
-        }   
+        LoginCliente cliente = new LoginCliente();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.setVisible(false);  
     }                                 
     public static void main(String args[]) 
     {

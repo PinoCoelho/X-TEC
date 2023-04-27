@@ -114,12 +114,10 @@ public class ClientApp extends javax.swing.JFrame{
     }
     private void ExitActionPerformed(java.awt.event.ActionEvent evt)
     {
-        if (evt.getSource() == Exit){
-            LoginCliente cliente = new LoginCliente();
-            cliente.setVisible(true);
-            cliente.setLocationRelativeTo(null);
-            this.setVisible(false);
-        }
+        LoginCliente cliente = new LoginCliente();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.setVisible(false);
     }
     public static void main(String args[])
     {

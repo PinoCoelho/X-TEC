@@ -155,30 +155,23 @@ public class LoginCliente extends javax.swing.JFrame
     } 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt)
     {                                                    
-        if (evt.getSource() == registerButton)
-        {
-            Register register = new Register();
-            register.setVisible(true);
-            register.setLocationRelativeTo(null);
-            this.setVisible(false);
-        }
+        Register register = new Register();
+        register.setVisible(true);
+        register.setLocationRelativeTo(null);
+        this.setVisible(false);
     }
     private void loginRegisterButtonActionPerformed(java.awt.event.ActionEvent evt)
     {                                                    
-        if (evt.getSource() == loginRegisterButton)
-        {
-            LoginAdmin admin = new LoginAdmin();
-            admin.setVisible(true);
-            admin.setLocationRelativeTo(null);
-            this.setVisible(false);
-        }
+        LoginAdmin admin = new LoginAdmin();
+        admin.setVisible(true);
+        admin.setLocationRelativeTo(null);
+        this.setVisible(false);
     }
-    private void LoginClient(java.awt.event.ActionEvent evt){
-        if (evt.getSource() == aceptarButton){
-            ClientApp client = new ClientApp();
-            client.setVisible(true);
-            client.setLocationRelativeTo(null);
-            this.setVisible(false);
-        }
+    private void LoginClient(java.awt.event.ActionEvent evt)
+    {
+        ClientApp client = new ClientApp();
+        client.setVisible(true);
+        client.setLocationRelativeTo(null);
+        this.setVisible(false);
     }
 }

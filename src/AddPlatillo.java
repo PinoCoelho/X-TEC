@@ -148,7 +148,13 @@ public class AddPlatillo extends javax.swing.JFrame {
 
     private void añadirPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                     
-        
+        if (evt.getSource() == añadirPlatilloButton)
+        {
+            nombrePlatilloTextField.setText("");
+            caloriasPlatilloTextField.setText("");
+            tiempoPlatilloTextfield.setText("");
+            precioPlatilloTextField.setText("");
+        }
     }                                                    
     public static void main(String args[]) 
     {

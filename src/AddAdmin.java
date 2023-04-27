@@ -178,7 +178,13 @@ public class AddAdmin extends javax.swing.JFrame {
 
     private void volverAddButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                
-       
+        if (evt.getSource() == volverAddButton)
+        {
+            MasterApp master = new MasterApp();
+            master.setVisible(true);
+            master.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }
     }                                               
     public static void main(String args[]) 
     {

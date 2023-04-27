@@ -116,12 +116,22 @@ public class MasterApp extends javax.swing.JFrame
 
     private void agregarAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                   
-        
+        if (evt.getSource() == agregarAdminButton){
+            AddAdmin add = new AddAdmin();
+            add.setVisible(true);
+            add.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }
     }                                                  
 
     private void agregarPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                      
-       
+        if (evt.getSource() == agregarPlatilloButton){
+            AddPlatillo addPlatillo = new AddPlatillo();
+            addPlatillo.setVisible(true);
+            addPlatillo.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }
     }                                                     
 
     private void editarPlatillosButtonActionPerformed(java.awt.event.ActionEvent evt) 

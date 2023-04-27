@@ -28,7 +28,7 @@ public class MasterApp extends javax.swing.JFrame
 
         administraciónLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); 
         administraciónLabel.setForeground(new java.awt.Color(255, 0, 0));
-        administraciónLabel.setText("Administración");
+        administraciónLabel.setText("Administración");//hcehciebvuebv
 
         agregarAdminButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); 
         agregarAdminButton.setText("Agregar administrador");

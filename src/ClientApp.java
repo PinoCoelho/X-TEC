@@ -110,6 +110,10 @@ public class ClientApp extends javax.swing.JFrame{
 
     private void NuevoPedidoActionPerformed(java.awt.event.ActionEvent evt)
     {
+        Menu cliente = new Menu();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.setVisible(false);
 
     }
     private void ExitActionPerformed(java.awt.event.ActionEvent evt)

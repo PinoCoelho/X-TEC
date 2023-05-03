@@ -1,6 +1,9 @@
+import javax.xml.transform.TransformerException;
+
 public class Main {
-    public static void main(String args[])
-    {
+    public static void main(String args[]) throws Exception {
+
+        ServerApp.iniciarXML();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

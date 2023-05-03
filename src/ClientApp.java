@@ -105,7 +105,10 @@ public class ClientApp extends javax.swing.JFrame{
 
     private void HistorialActionPerformed(java.awt.event.ActionEvent evt)
     {
-
+        Historial cliente = new Historial();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.setVisible(false);
     }
 
     private void NuevoPedidoActionPerformed(java.awt.event.ActionEvent evt)

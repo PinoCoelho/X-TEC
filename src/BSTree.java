@@ -90,6 +90,39 @@ public class BSTree {
             return null;
         }
 
+        public String editUser(int id, int newID, String newUser) {
+            Node currentNode = root;
+
+            while (currentNode != null) {
+                if (id == currentNode.value.id) {
+                    currentNode.value.id = newID;
+                    currentNode.value.user = newUser;
+                    return currentNode.value.user;
+                } else if (id < currentNode.value.id) {
+                    currentNode = currentNode.leftChild;
+                } else {
+                    currentNode = currentNode.rightChild;
+                }
+            }
+            return null;
+        }
+
+        public String editPassword(int id, String newPassword) {
+            Node currentNode = root;
+
+            while (currentNode != null) {
+                if (id == currentNode.value.id) {
+                    currentNode.value.contra = newPassword;
+                    return currentNode.value.contra;
+                } else if (id < currentNode.value.id) {
+                    currentNode = currentNode.leftChild;
+                } else {
+                    currentNode = currentNode.rightChild;
+                }
+            }
+            return null;
+        }
+
         public void delete(int id) {
             root = deleteNode(root, id);
         }

@@ -1,3 +1,7 @@
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,10 +17,13 @@ import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
 import javax.xml.xpath.*;
 
+
 public class ServerApp {
 
     static BSTree.BinarySearchTree arbolAdmin = new BSTree.BinarySearchTree();
     static BSTree.BinarySearchTree arbolUser = new BSTree.BinarySearchTree();
+    static AVLTree.AVLtree arbolPlatillos = new AVLTree.AVLtree();
+    static AVLTree.AVLNode root = arbolPlatillos.root;
 
     public static class Info {
         public int id;
@@ -27,6 +34,22 @@ public class ServerApp {
             this.id = id;
             this.user = user;
             this.contra = contra;
+        }
+    }
+
+    public static class Platillo {
+        public int id;
+        public String nombre;
+        public String calorias;
+        public String tiempo;
+        public String precio;
+
+        public Platillo(int id, String nombre, String calorias, String tiempo, String precio) {
+            this.id = id;
+            this.nombre = nombre;
+            this.calorias = calorias;
+            this.tiempo = tiempo;
+            this.precio = precio;
         }
     }
 
@@ -231,6 +254,27 @@ public class ServerApp {
         }
     }
 
+    public static void editarAdmin(String usuarioAdminEditar, String newNombre, String newContra) throws Exception {
+        if (arbolAdmin.contains(generateID(usuarioAdminEditar))) {
+            deleteAdmin(usuarioAdminEditar);
+            if (newNombre == null && newContra != null) {
+                registrarAdmin(usuarioAdminEditar, newContra);
+                arbolAdmin.editPassword(generateID(usuarioAdminEditar), newContra);
+            }
+            else if (newNombre != null && newContra != null){
+                registrarAdmin(newNombre, newContra);
+                arbolAdmin.editPassword(generateID(usuarioAdminEditar), newContra);
+                arbolAdmin.editUser(generateID(usuarioAdminEditar), generateID(newNombre), newNombre);
+            }
+            else {
+                System.out.println("Se debe poner al menos una nueva contraseña, el nuevo nombre puede dejarse null");
+            }
+        }
+        else {
+            System.out.println("El administrador no esta registrado, recordarme quitar estos prints");
+        }
+    }
+
     private static void formatXMLFile(String file) throws Exception{
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -350,6 +394,160 @@ public class ServerApp {
         else {
             System.out.println("El admin no esta registrado, recordarme quitar estos prints");
             return false;
+        }
+    }
+
+    private static String getJsonFromFile(String filename) {
+        String jsonText = "";
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonText += line + "\n";
+            }
+
+            bufferedReader.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return jsonText;
+    }
+
+    public static void iniciarJson() throws ParseException {
+        String strJson = getJsonFromFile("Platillos.json");
+        try {
+            JSONParser parser = new JSONParser();
+            Object object = parser.parse(strJson);
+            JSONObject mainJsonObject = (JSONObject) object;
+
+            JSONArray jsonArrayPlatillos = (JSONArray) mainJsonObject.get("platillos");
+
+            for (int i = 0; i < jsonArrayPlatillos.size(); i++) {
+
+                JSONObject jsonPlatillo = (JSONObject) jsonArrayPlatillos.get(i);
+
+                String id = (String) jsonPlatillo.get("id");
+                String nombre = (String) jsonPlatillo.get("nombre");
+                String calorias = (String) jsonPlatillo.get("calorias");
+                String tiempo = (String) jsonPlatillo.get("tiempo");
+                String precio = (String) jsonPlatillo.get("precio");
+
+                root = arbolPlatillos.insert(root, new Platillo(Integer.parseInt(id), nombre, calorias, tiempo, precio));
+            }
+        }
+        catch (Exception exception) {
+            System.out.println("Ha fallado");
+        }
+
+    }
+
+    public static void deletePlatillo(String nombrePlatillo) {
+        if (arbolPlatillos.contains(root, generateID(nombrePlatillo))) {
+            int idPlatillo = generateID(nombrePlatillo);
+            String strJson = getJsonFromFile("Platillos.json");
+            try {
+                JSONParser parser = new JSONParser();
+                Object object = parser.parse(strJson);
+                JSONObject mainJsonObject = (JSONObject) object;
+
+                JSONArray jsonArrayPlatillos = (JSONArray) mainJsonObject.get("platillos");
+
+                for (int i = 0; i < jsonArrayPlatillos.size(); i++) {
+
+                    JSONObject jsonPlatillo = (JSONObject) jsonArrayPlatillos.get(i);
+                    String id = (String) jsonPlatillo.get("id");
+
+                    if (Integer.parseInt(id) == idPlatillo) {
+                        jsonArrayPlatillos.remove(i);
+                    }
+
+                }
+                FileWriter fileWriter = new FileWriter("Platillos.json");
+                fileWriter.write(mainJsonObject.toString());
+                fileWriter.close();
+            } catch (Exception exception) {
+                System.out.println("Ha fallado");
+            }
+        }
+        else {
+            System.out.println("El platillo no existe en el menu, recordarme quitar estos prints");
+        }
+    }
+
+    public static void agregarPlatillo(String nombre, String calorias, String tiempo, String precio) {
+        if (!arbolPlatillos.contains(root, generateID(nombre))) {
+            String strJson = getJsonFromFile("Platillos.json");
+            try {
+                JSONParser parser = new JSONParser();
+                Object object = parser.parse(strJson);
+                JSONObject mainJsonObject = (JSONObject) object;
+
+                JSONArray jsonArrayPlatillos = (JSONArray) mainJsonObject.get("platillos");
+
+                JSONObject infoPlatillo = new JSONObject();
+                infoPlatillo.put("id", Integer.toString(generateID(nombre)));
+                infoPlatillo.put("nombre", nombre);
+                infoPlatillo.put("calorias", calorias);
+                infoPlatillo.put("tiempo", tiempo);
+                infoPlatillo.put("precio", precio);
+
+                jsonArrayPlatillos.add(infoPlatillo);
+                root = arbolPlatillos.insert(root, new Platillo(generateID(nombre), nombre, calorias, tiempo, precio));
+
+                FileWriter fileWriter = new FileWriter("Platillos.json");
+                fileWriter.write(mainJsonObject.toString());
+                fileWriter.close();
+            } catch (Exception exception) {
+                System.out.println("Ha fallado");
+            }
+        }
+        else {
+            System.out.println("El platillo ya existe en el menu, recordarme quitar estos prints");
+        }
+    }
+
+    public static void editarPlatillo(String nombrePlatilloAEditar, String newCalorias, String newTiempo, String newPrecio) {
+        if (arbolPlatillos.contains(root, generateID(nombrePlatilloAEditar))) {
+            String strJson = getJsonFromFile("Platillos.json");
+            try {
+                JSONParser parser = new JSONParser();
+                Object object = parser.parse(strJson);
+                JSONObject mainJsonObject = (JSONObject) object;
+
+                JSONArray jsonArrayPlatillos = (JSONArray) mainJsonObject.get("platillos");
+
+                for (int i = 0; i < jsonArrayPlatillos.size(); i++) {
+
+                    JSONObject jsonPlatillo = (JSONObject) jsonArrayPlatillos.get(i);
+
+                    if (jsonPlatillo.get("id").equals(Integer.toString((generateID(nombrePlatilloAEditar))))) { // se puede decidir el momento de hacerlo cuando va por un indice especifico
+                        if (newCalorias != null) {
+                            jsonPlatillo.put("calorias", newCalorias);
+                            arbolPlatillos.editCalorias(root, generateID(nombrePlatilloAEditar), newCalorias);
+                        }
+                        if (newTiempo != null) {
+                            jsonPlatillo.put("tiempo", newTiempo);
+                            arbolPlatillos.editTiempo(root, generateID(nombrePlatilloAEditar), newTiempo);
+                        }
+                        if (newPrecio != null) {
+                            jsonPlatillo.put("precio", newPrecio);
+                            arbolPlatillos.editPrecio(root, generateID(nombrePlatilloAEditar), newPrecio);
+                        }
+                    }
+
+                }
+                FileWriter fileWriter = new FileWriter("Platillos.json");
+                fileWriter.write(mainJsonObject.toString());
+                fileWriter.close();
+            } catch (Exception exception) {
+                System.out.println("Ha fallado");
+            }
+        }
+        else {
+            System.out.println("El platillo a editar no existe en el menu");
         }
     }
 

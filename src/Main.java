@@ -4,6 +4,11 @@ public class Main {
     public static void main(String args[]) throws Exception {
 
         ServerApp.iniciarXML();
+        ServerApp.iniciarJson();
+        System.out.println(ServerApp.arbolPlatillos.getPrecio(ServerApp.root, 71));
+        ServerApp.editarPlatillo("Burrito", null, null, "200");
+        System.out.println(ServerApp.arbolPlatillos.getPrecio(ServerApp.root, 71));
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

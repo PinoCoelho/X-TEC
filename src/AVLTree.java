@@ -205,6 +205,21 @@ public class AVLTree {
             return contains(node.left, id);
         }
 
+        ServerApp.Platillo getPlatillo(AVLNode node, int id) {
+            if (node == null) {
+                return null;
+            }
+            else if (node.data.id == id) {
+                return node.data;
+            }
+
+            if (node.data.id < id) {
+                return getPlatillo(node.right, id);
+            }
+
+            return getPlatillo(node.left, id);
+        }
+
         String getNombre(AVLNode node, int id) {
             if (node == null) {
                 return null;

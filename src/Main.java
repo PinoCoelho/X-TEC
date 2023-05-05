@@ -5,9 +5,17 @@ public class Main {
 
         ServerApp.iniciarXML();
         ServerApp.iniciarJson();
-        System.out.println(ServerApp.arbolPlatillos.getPrecio(ServerApp.root, 71));
-        ServerApp.editarPlatillo("Burrito", null, null, "200");
-        System.out.println(ServerApp.arbolPlatillos.getPrecio(ServerApp.root, 71));
+        ServerApp.agregarPlatilloAPedido("Burrito");
+        ServerApp.agregarPlatilloAPedido("Nachos");
+        ServerApp.agregarPlatilloAPedido("Nachos");
+        System.out.println(ServerApp.getPlatillosEnPedido());
+        ServerApp.realizarPedido();
+        ServerApp.agregarPlatilloAPedido("Nachos");
+        ServerApp.agregarPlatilloAPedido("Burrito");
+        ServerApp.agregarPlatilloAPedido("Burrito");
+        System.out.println(ServerApp.getPlatillosEnPedido());
+        ServerApp.realizarPedido();
+        //System.out.println(ServerApp.getPlatillosEnColaPedidos());
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

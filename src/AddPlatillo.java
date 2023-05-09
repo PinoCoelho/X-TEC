@@ -12,6 +12,9 @@ public class AddPlatillo extends javax.swing.JFrame {
     public javax.swing.JTextField tiempoPlatilloTextfield;
     public javax.swing.JButton volverPlatilloButton;
 
+    /**
+     * El metodo AddPlatillo inicializa los componentes de la ventana
+     */
     public AddPlatillo() 
     {
         initComponents();
@@ -133,8 +136,12 @@ public class AddPlatillo extends javax.swing.JFrame {
         );
 
         pack();
-    }                        
+    }
 
+    /**
+     * El metodo volverPlatilloButtonActionPerformed direcciona a la ventana de MasterApp
+     * @param evt
+     */
     private void volverPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                     
         if (evt.getSource() == volverPlatilloButton)
@@ -144,8 +151,12 @@ public class AddPlatillo extends javax.swing.JFrame {
             master.setLocationRelativeTo(null);
             this.setVisible(false);
         }
-    }                                                    
+    }
 
+    /**
+     * El metodo añadirPlatilloButtonActionPerformed agreaga la informacion del platillo escrita en los textfields
+     * @param evt
+     */
     private void añadirPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                     
         if (evt.getSource() == añadirPlatilloButton)
@@ -155,7 +166,11 @@ public class AddPlatillo extends javax.swing.JFrame {
             tiempoPlatilloTextfield.setText("");
             precioPlatilloTextField.setText("");
         }
-    }                                                    
+    }
+    /**
+     *  El metodo main correra los componentes de la ventana
+     * @param args
+     */
     public static void main(String args[]) 
     {
         try {
@@ -176,6 +191,9 @@ public class AddPlatillo extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
+            /**
+             * El metodo run hara visibles los componentes de la ventana
+             */
             public void run() {
                 new AddPlatillo().setVisible(true);
             }

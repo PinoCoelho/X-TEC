@@ -1,5 +1,7 @@
 import javax.xml.transform.TransformerException;
-
+/**
+ * Se crea el metodo Main para que abra el Login de clientes
+ */
 public class Main {
     public static void main(String args[])
     {//Prueba
@@ -20,6 +22,10 @@ public class Main {
             java.util.logging.Logger.getLogger(LoginCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+             * Se crea el metodo que corre el metodo
+             * para que haga visible el LoginCliente
+             */
             public void run() {
                 new LoginCliente().setVisible(true);
             }

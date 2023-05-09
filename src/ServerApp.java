@@ -29,11 +29,20 @@ public class ServerApp {
     static Queue colaPedidos = new Queue();
     static int cantPedidos = 0;
 
+    /**
+     * La clase Info establece la informacion que se manejara
+     */
     public static class Info {
         public int id;
         public String user;
         public String contra;
 
+        /**
+         * El metodo Info obtiene el valor de la informacion establecida
+         * @param id
+         * @param user
+         * @param contra
+         */
         public Info(int id, String user, String contra) {
             this.id = id;
             this.user = user;
@@ -41,6 +50,9 @@ public class ServerApp {
         }
     }
 
+    /**
+     * La clase Platillo establece la informacion de los platillos
+     */
     public static class Platillo {
         public int id;
         public String nombre;
@@ -48,6 +60,14 @@ public class ServerApp {
         public String tiempo;
         public String precio;
 
+        /**
+         * El metodd Platillo obtiene el valor de la informacion establecida
+         * @param id
+         * @param nombre
+         * @param calorias
+         * @param tiempo
+         * @param precio
+         */
         public Platillo(int id, String nombre, String calorias, String tiempo, String precio) {
             this.id = id;
             this.nombre = nombre;
@@ -62,6 +82,9 @@ public class ServerApp {
     static Document docAdmin;
     static Document docUser;
 
+    /**
+     * El metodo iniciarXML inicializa y direcciona la informacion de los platillos al XML
+     */
     public static void iniciarXML() {
         factory = DocumentBuilderFactory.newInstance();
         try {
@@ -150,6 +173,11 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo generateID crea un ID aleatorio
+     * @param s
+     * @return
+     */
     public static int generateID(String s) {
         int n = 0;
         for (int i = 0; i < s.length(); ++i) {
@@ -159,6 +187,12 @@ public class ServerApp {
         return Math.abs(n);
     }
 
+    /**
+     * El metodo registrarAdmin registra la informacion de los administradores
+     * @param user
+     * @param contra
+     * @throws Exception
+     */
     public static void registrarAdmin(String user, String contra) throws Exception {
         int id = generateID(user);
         if (!arbolAdmin.contains(id)) {
@@ -195,6 +229,12 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo registrarUser registra la informacion de los clientes
+     * @param user
+     * @param contra
+     * @throws Exception
+     */
     public static void registrarUser(String user, String contra) throws Exception {
         int id = generateID(user);
         if (!arbolAdmin.contains(id)) {
@@ -236,6 +276,11 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo deleteAdmin Borra la informacion del administrador seleccionado
+     * @param user
+     * @throws Exception
+     */
     public static void deleteAdmin(String user) throws Exception {
         int id = generateID(user);
         if (arbolAdmin.contains(id)) {
@@ -247,6 +292,11 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo deleteUser borra la informacion del cliente seleccionado
+     * @param user
+     * @throws Exception
+     */
     public static void deleteUser(String user) throws Exception {
         int id = generateID(user);
         if (arbolUser.contains(id)) {
@@ -258,6 +308,13 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo editarAdmin modifica la informacion del administrador seleccionado
+     * @param usuarioAdminEditar
+     * @param newNombre
+     * @param newContra
+     * @throws Exception
+     */
     public static void editarAdmin(String usuarioAdminEditar, String newNombre, String newContra) throws Exception {
         if (arbolAdmin.contains(generateID(usuarioAdminEditar))) {
             deleteAdmin(usuarioAdminEditar);
@@ -279,6 +336,11 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo formatXMLFile formatea el archivo XML
+     * @param file
+     * @throws Exception
+     */
     private static void formatXMLFile(String file) throws Exception{
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -295,6 +357,11 @@ public class ServerApp {
         transformer.transform(source, result);
     }
 
+    /**
+     * El metodo removeEmptyTextXML remueve el XML vacio
+     * @param doc
+     * @throws XPathExpressionException
+     */
     private static void removeEmptyTextXML(Document doc) throws XPathExpressionException {
         XPath xp = XPathFactory.newInstance().newXPath();
         NodeList nl = (NodeList) xp.evaluate("//text()[normalize-space(.)='']", doc, XPathConstants.NODESET);
@@ -305,6 +372,12 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo deleteXMLAdmin elimina el XML de administradores
+     * @param id
+     * @param file
+     * @throws Exception
+     */
     private static void deleteXMLAdmin(String id, String file) throws Exception {
         Element element = docAdmin.getDocumentElement();
         NodeList Admins = element.getElementsByTagName("Admin");
@@ -335,7 +408,12 @@ public class ServerApp {
         StreamResult result = new StreamResult(new File(file));
         transformer.transform(domsource, result);
     }
-
+    /**
+     * El metodo deleteXMLUser elimina el XML de clientes
+     * @param id
+     * @param file
+     * @throws Exception
+     */
     private static void deleteXMLUser(String id, String file) throws Exception {
         Element element = docUser.getDocumentElement();
         NodeList Users = element.getElementsByTagName("Cliente");
@@ -367,6 +445,12 @@ public class ServerApp {
         transformer.transform(domsource, result);
     }
 
+    /**
+     * El metodo validarUser valida la informacion ingrasada por los clientes
+     * @param user
+     * @param contra
+     * @return
+     */
     public static boolean validarUser(String user, String contra) {
         int tempid = generateID(user);
         if (arbolUser.contains(tempid)) {
@@ -383,7 +467,12 @@ public class ServerApp {
             return false;
         }
     }
-
+    /**
+     * El metodo validarAdmin valida la informacion ingrasada por los administradores
+     * @param user
+     * @param contra
+     * @return
+     */
     public static boolean validarAdmin(String user, String contra) {
         int tempid = generateID(user);
         if (arbolAdmin.contains(tempid)) {
@@ -401,6 +490,11 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo getJsonFromFile lee el JSON
+     * @param filename
+     * @return
+     */
     private static String getJsonFromFile(String filename) {
         String jsonText = "";
         try {
@@ -420,6 +514,10 @@ public class ServerApp {
         return jsonText;
     }
 
+    /**
+     * El Metodo iniciarJson inicializa el Json
+     * @throws ParseException
+     */
     public static void iniciarJson() throws ParseException {
         String strJson = getJsonFromFile("Platillos.json");
         try {
@@ -448,6 +546,10 @@ public class ServerApp {
 
     }
 
+    /**
+     * El metodo deletePlatillo borra el platillo del JSON
+     * @param nombrePlatillo
+     */
     public static void deletePlatillo(String nombrePlatillo) {
         if (arbolPlatillos.contains(root, generateID(nombrePlatillo))) {
             int idPlatillo = generateID(nombrePlatillo);
@@ -481,6 +583,13 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo agregarPlatillo agrega el platillo al JSON
+     * @param nombre
+     * @param calorias
+     * @param tiempo
+     * @param precio
+     */
     public static void agregarPlatillo(String nombre, String calorias, String tiempo, String precio) {
         if (!arbolPlatillos.contains(root, generateID(nombre))) {
             String strJson = getJsonFromFile("Platillos.json");
@@ -513,6 +622,13 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo editarPlatillo modifica la informacion del platillo en el JSON
+     * @param nombrePlatilloAEditar
+     * @param newCalorias
+     * @param newTiempo
+     * @param newPrecio
+     */
     public static void editarPlatillo(String nombrePlatilloAEditar, String newCalorias, String newTiempo, String newPrecio) {
         if (arbolPlatillos.contains(root, generateID(nombrePlatilloAEditar))) {
             String strJson = getJsonFromFile("Platillos.json");
@@ -555,6 +671,11 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo agregarPlatilloAPedido agrega el platillo al pedido en curso
+     * @param nombrePlatillo
+     * @return mensaje
+     */
     public static String agregarPlatilloAPedido(String nombrePlatillo) {
         if (arbolPlatillos.contains(root, generateID(nombrePlatillo))) {
             listaPlatillos.insertFirst(arbolPlatillos.getPlatillo(root, generateID(nombrePlatillo)));
@@ -565,12 +686,20 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo eliminarPedido elimina el pedido en curso
+     * @return Mensaje
+     */
     public static String eliminarPedido() {
         listaPlatillos.empty();
         listaPlatillos.resetSize();
         return "Se ha eliminado el pedido actual";
     }
 
+    /**
+     * El metodo realizarPedido concreta el pedido en curso
+     * @return mensaje
+     */
     public static String realizarPedido() {
         if (cantPedidos<9) {
             colaPedidos.enqueue(new ListaEnlazada().copy(listaPlatillos));
@@ -584,6 +713,10 @@ public class ServerApp {
         }
     }
 
+    /**
+     * El metodo getPlatillosEnPedido obtiene los platillo que fueron incluidos al pedido
+     * @return str
+     */
     public static String getPlatillosEnPedido() {
         int i = 0;
         String str = "Platillos en el pedido: \n\n";
@@ -595,6 +728,10 @@ public class ServerApp {
         return str;
     }
 
+    /**
+     * El metodo getPlatillosEnColaPedidos obtiene los platillos en la cola de pedidos
+     * @return str
+     */
     public static String getPlatillosEnColaPedidos() {
         int i = 0;
         int j = 0;

@@ -11,12 +11,15 @@ public class LoginAdmin extends javax.swing.JFrame
     public javax.swing.JLabel usernameAdminLabel;
     public javax.swing.JTextField usernameAdminTextField;
 
+    /**
+     * Se crea el metodo que inicializara los componentes de la ventana del LoginAdmin
+     */
     public LoginAdmin() {
         initComponents();
     }
 
     
-    @SuppressWarnings("")                        
+    @SuppressWarnings("")
     private void initComponents() {
 
         usernameAdminLabel = new javax.swing.JLabel();
@@ -108,6 +111,12 @@ public class LoginAdmin extends javax.swing.JFrame
 
         pack();
     }
+
+    /**
+     * Se crea el metodo aceptarAdminButtonActionPerformed que direccionara a la ventana de MasterApp,
+     * y validara que los datos sean correctos
+     * @param evt
+     */
     private void aceptarAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                 
         String user = "PinoCoelho";
@@ -126,15 +135,24 @@ public class LoginAdmin extends javax.swing.JFrame
         }
             
         
-    }                    
+    }
 
+    /**
+     * Se crea el metodo volverAdminButtonActionPerformed que devolvera al usuario al LoginCliente
+     * @param evt
+     */
     private void volverAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                 
         LoginCliente cliente = new LoginCliente();
         cliente.setVisible(true);
         cliente.setLocationRelativeTo(null);
         this.setVisible(false);
-    }                                                
+    }
+
+    /**
+     * El metodo main correra los componentes de la ventana
+     * @param args
+     */
     public static void main(String args[]) 
     {
         try {
@@ -154,6 +172,9 @@ public class LoginAdmin extends javax.swing.JFrame
             java.util.logging.Logger.getLogger(LoginAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+             * El metodo run hara visible la ventana
+             */
             @Override
             public void run() {
                 new LoginAdmin().setVisible(true);

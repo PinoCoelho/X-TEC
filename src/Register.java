@@ -8,7 +8,10 @@ public class Register extends javax.swing.JFrame
     public javax.swing.JLabel usernameRegisterLabel;
     public javax.swing.JTextField usernameRegisterTextField;
     public javax.swing.JButton volverRegisterButton;
-    
+
+    /**
+     * El metodo Register Inicializa los componentes de la ventana
+     */
     public Register() 
     {
         initComponents();
@@ -104,22 +107,34 @@ public class Register extends javax.swing.JFrame
         );
 
         pack();
-    }                        
+    }
 
+    /**
+     * El metodo volverRegisterButtonActionPerformed direccionara a la ventana de LoginCliente
+     * @param evt
+     */
     private void volverRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                     
         LoginCliente cliente = new LoginCliente();
         cliente.setVisible(true);
         cliente.setLocationRelativeTo(null);
         this.setVisible(false);
-    }                                                   
+    }
 
+    /**
+     * El metodo aceptarRegisterButtonActionPerformed concreta el registro de un nuevo cliente
+     * @param evt
+     */
     private void aceptarRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                      
         usernameRegisterTextField.setText("");
         contraRegisterField.setText("");
-    }                                                     
+    }
 
+    /**
+     *  El metodo main correra los componentes de la ventana
+     * @param args
+     */
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) 
@@ -140,6 +155,9 @@ public class Register extends javax.swing.JFrame
         }
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
+            /**
+             * El metodo run hara visibles los componentes de la ventana
+             */
             public void run() {
                 new Register().setVisible(true);
             }

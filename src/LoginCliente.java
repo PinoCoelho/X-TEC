@@ -13,7 +13,9 @@ public class LoginCliente extends javax.swing.JFrame
     public javax.swing.JTextField usernameTextField;
 
 
-
+    /**
+     * Se crea el metodo LoginCliente que inicializara los componentes de la ventana
+     */
     public LoginCliente() {
         initComponents();
     }
@@ -149,10 +151,19 @@ public class LoginCliente extends javax.swing.JFrame
         );
 
         pack();
-    }                       
+    }
+    /**
+     * Se crea el metodo contraFieldActionPerformed que almacenara la contraseña
+     * @param evt
+     */
     private void contraFieldActionPerformed(java.awt.event.ActionEvent evt) {                                            
         
-    } 
+    }
+
+    /**
+     *Se crea el metodo registerButtonActionPerformed que direccionara a la ventana de registro de clientes
+     * @param evt
+     */
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt)
     {                                                    
         Register register = new Register();
@@ -160,6 +171,11 @@ public class LoginCliente extends javax.swing.JFrame
         register.setLocationRelativeTo(null);
         this.setVisible(false);
     }
+
+    /**
+     * Se crea el metodo loginRegisterButtonActionPerformed que direccionara al la ventana de registro de administradosres
+     * @param evt
+     */
     private void loginRegisterButtonActionPerformed(java.awt.event.ActionEvent evt)
     {                                                    
         LoginAdmin admin = new LoginAdmin();
@@ -167,6 +183,11 @@ public class LoginCliente extends javax.swing.JFrame
         admin.setLocationRelativeTo(null);
         this.setVisible(false);
     }
+
+    /**
+     * Se crea el metodo LoginClient que direccionara a la ventana de ClientApp
+     * @param evt
+     */
     private void LoginClient(java.awt.event.ActionEvent evt)
     {
         ClientApp client = new ClientApp();

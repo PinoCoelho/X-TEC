@@ -7,6 +7,9 @@ public class ElimEditPlatillos extends javax.swing.JFrame {
     public javax.swing.JLabel seleccionPlatilloElimEditLabel;
     public javax.swing.JButton volverElimEditPlatillosButton;
 
+    /**
+     * El metodo ElimEditPlatillos inicializara los componentes de la ventana
+     */
     public ElimEditPlatillos() 
     {
         initComponents();
@@ -108,31 +111,50 @@ public class ElimEditPlatillos extends javax.swing.JFrame {
         );
 
         pack();
-    }                   
+    }
 
+    /**
+     * El metodo eliminarPlatilloButtonActionPerformed eliminara el platillo seleccionado
+     * @param evt
+     */
     private void eliminarPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                       
         
-    }                                                      
+    }
 
+    /**
+     * El metodo editPlatilloButtonActionPerformed editara la informacion del platillo
+     * @param evt
+     */
     private void editPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                   
         
-    }                                                  
+    }
 
+    /**
+     * El metodo volverElimEditPlatillosButtonActionPerformed direccionara al la ventana de la MasterApp
+     * @param evt
+     */
     private void volverElimEditPlatillosButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                              
             MasterApp master = new MasterApp();
             master.setVisible(true);
             master.setLocationRelativeTo(null);
             this.setVisible(false);
-    }                                                             
+    }
 
+    /**
+     * El metodo seleccionEditElimComboBoxActionPerformed facilitara la seleccion para la modificacion o eliminacion de un platillo
+     * @param evt
+     */
     private void seleccionEditElimComboBoxActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                          
         
-    }   
-                                                          
+    }
+    /**
+     *  El metodo main correra los componentes de la ventana
+     * @param args
+     */
     public static void main(String args[]) 
     {
         try {
@@ -153,6 +175,9 @@ public class ElimEditPlatillos extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
+            /**
+             * El metodo run hara visibles los componentes de la ventana
+             */
             public void run() {
                 new ElimEditPlatillos().setVisible(true);
             }

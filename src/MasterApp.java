@@ -8,6 +8,9 @@ public class MasterApp extends javax.swing.JFrame
     public javax.swing.JButton salirAdminButton;
     public javax.swing.JButton visualizarPedidosButton;
 
+    /**
+     * El metodo MasterApp inicializara los componentes de  la ventana
+     */
     public MasterApp() 
     {
         initComponents();
@@ -112,44 +115,69 @@ public class MasterApp extends javax.swing.JFrame
         );
 
         pack();
-    }                        
+    }
 
+    /**
+     * Se crea el metodo agregarAdminButtonActionPerformed que agregara nuevos usuarios administradores
+     * @param evt
+     */
     private void agregarAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                   
         AddAdmin add = new AddAdmin();
         add.setVisible(true);
         add.setLocationRelativeTo(null);
         this.setVisible(false);
-    }                                                  
+    }
 
+    /**
+     * Se crea el metodo agregarPlatilloButtonActionPerformed que agregara nuevos platillos al menu
+     * @param evt
+     */
     private void agregarPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                      
         AddPlatillo addPlatillo = new AddPlatillo();
         addPlatillo.setVisible(true);
         addPlatillo.setLocationRelativeTo(null);
         this.setVisible(false);
-    }                                                     
+    }
 
+    /**
+     * Se crea el metodo editarPlatillosButtonActionPerformed que modificara o eliminara los platillos del menu
+     * @param evt
+     */
     private void editarPlatillosButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                      
             ElimEditPlatillos elimEdit = new ElimEditPlatillos();
             elimEdit.setVisible(true);
             elimEdit.setLocationRelativeTo(null);
             this.setVisible(false);
-    }                                                     
+    }
 
+    /**
+     * Se crea el metodo visualizarPedidosButtonActionPerformed que enseñara los pedidos
+     * @param evt
+     */
     private void visualizarPedidosButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                        
         
-    }                                                       
+    }
 
+    /**
+     * Se crea el metodo salirAdminButtonActionPerformed que devolvera a la ventana de LoginCliente
+     * @param evt
+     */
     private void salirAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                 
         LoginCliente cliente = new LoginCliente();
         cliente.setVisible(true);
         cliente.setLocationRelativeTo(null);
         this.setVisible(false);  
-    }                                 
+    }
+
+    /**
+     * El metodo main correra los componentes de la ventana
+     * @param args
+     */
     public static void main(String args[]) 
     {
         try {
@@ -169,6 +197,9 @@ public class MasterApp extends javax.swing.JFrame
             java.util.logging.Logger.getLogger(MasterApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+             * El metodo run hara visible la ventana
+             */
             public void run() {
                 new MasterApp().setVisible(true);
             }

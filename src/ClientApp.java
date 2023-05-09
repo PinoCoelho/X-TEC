@@ -6,11 +6,15 @@ public class ClientApp extends javax.swing.JFrame{
     public javax.swing.JButton Exit;
     public javax.swing.JLabel PedidosActivos2;
 
+    /**
+     * Se crea el metodo ClientApp que inicializara los componentes de la ventana
+     */
     public ClientApp()
     {
         initComponents();
         setSize(600,500);
     }
+
 
     @SuppressWarnings("")
     private void initComponents()
@@ -103,6 +107,11 @@ public class ClientApp extends javax.swing.JFrame{
         pack();
     }
 
+    /**
+     * Se crea el metodo HistorialActionPerformed que direccionara a la ventana de historial
+     * @param evt
+     */
+
     private void HistorialActionPerformed(java.awt.event.ActionEvent evt)
     {
         Historial cliente = new Historial();
@@ -111,6 +120,10 @@ public class ClientApp extends javax.swing.JFrame{
         this.setVisible(false);
     }
 
+    /**
+     * El metodo NuevoPedidoActionPerformed direccionara a la ventana del menu
+     * @param evt
+     */
     private void NuevoPedidoActionPerformed(java.awt.event.ActionEvent evt)
     {
         Menu cliente = new Menu();
@@ -119,6 +132,11 @@ public class ClientApp extends javax.swing.JFrame{
         this.setVisible(false);
 
     }
+
+    /**
+     * El metodo ExitActionPerformed direcciona al LoginCliente
+     * @param evt
+     */
     private void ExitActionPerformed(java.awt.event.ActionEvent evt)
     {
         LoginCliente cliente = new LoginCliente();
@@ -126,6 +144,11 @@ public class ClientApp extends javax.swing.JFrame{
         cliente.setLocationRelativeTo(null);
         this.setVisible(false);
     }
+
+    /**
+     * El metodo main correra los componentes de la ventana
+     * @param args
+     */
     public static void main(String args[])
     {
         try {
@@ -145,6 +168,9 @@ public class ClientApp extends javax.swing.JFrame{
             java.util.logging.Logger.getLogger(ClientApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+             * El metodo run hara visiblie los componentes de la ventana
+             */
             public void run() {
                 new ClientApp().setVisible(true);
             }

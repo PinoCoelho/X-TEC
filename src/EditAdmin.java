@@ -7,7 +7,10 @@ public class EditAdmin extends javax.swing.JFrame
     public javax.swing.JComboBox<String> seleccionarAdminComboBox;
     public javax.swing.JLabel selecciondminLabel;
     public javax.swing.JButton volverEditAdminButton;
-    
+
+    /**
+     * El metodo EditAdmin inicializara los componentes de la ventana
+     */
     public EditAdmin() 
     {
         initComponents();
@@ -97,20 +100,32 @@ public class EditAdmin extends javax.swing.JFrame
         );
 
         pack();
-    }                       
+    }
 
+    /**
+     * El metodo volverEditAdminButtonActionPerformed direccionara a la ventana de AddAdmin
+     * @param evt
+     */
     private void volverEditAdminButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                      
         AddAdmin add = new AddAdmin();
         add.setVisible(true);
         add.setLocationRelativeTo(null);
         this.setVisible(false);
-    }                                                     
+    }
 
+    /**
+     * El metodo seleccionarAdminComboBoxActionPerformed facilitara la seleccion de un administrador para modificarle su contrseña
+     * @param evt
+     */
     private void seleccionarAdminComboBoxActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                         
         
-    }                                                        
+    }
+    /**
+     *  El metodo main correra los componentes de la ventana
+     * @param args
+     */
     public static void main(String args[]) 
     {
         try {
@@ -131,6 +146,9 @@ public class EditAdmin extends javax.swing.JFrame
         }
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
+            /**
+             * El metodo run hara visibles los componentes de la ventana
+             */
             public void run() {
                 new EditAdmin().setVisible(true);
             }

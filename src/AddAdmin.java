@@ -9,8 +9,9 @@ public class AddAdmin extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> eliminarEditarComboBox;
     public javax.swing.JComboBox<String> userañdirComboBox;
     public javax.swing.JButton volverAddButton;
-
-    
+    /**
+     * El metodo AddAdmin inicializara los componentes  de la ventana
+     */
     public AddAdmin() {
         initComponents();
     }
@@ -149,43 +150,71 @@ public class AddAdmin extends javax.swing.JFrame {
         );
 
         pack();
-    }                        
+    }
 
+    /**
+     * El metodo eliminarEditarComboBoxActionPerformed facilita la seleccion del administrador que desea eliminar o modificar
+     * @param evt
+     */
     private void eliminarEditarComboBoxActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                       
         
-    }                                                      
+    }
 
+    /**
+     * El metodo userañdirComboBoxActionPerformed facilita la seleccion del administrador que desea añadir
+     * @param evt
+     */
     private void userañdirComboBoxActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                  
         
-    }                                                 
+    }
 
+    /**
+     * El metodo añadirButtonActionPerformed añade el administrador que fue seleccionado
+     * @param evt
+     */
     private void añadirButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                             
         
-    }                                            
+    }
 
+    /**
+     *  El metodo eliminarButtonActionPerformed elimina el administrador que fue seleccionado
+     * @param evt
+     */
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                               
         
-    }                                              
+    }
 
+    /**
+     * El metodo editarButtonActionPerformed direcciona a la ventana de EditAdmin
+     * @param evt
+     */
     private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                             
         EditAdmin edit = new EditAdmin();
         edit.setVisible(true);
         edit.setLocationRelativeTo(null);
         this.setVisible(false);
-    }                                            
+    }
 
+    /**
+     *  El metodo volverAddButtonActionPerformed direcciona a la ventana MasterApp
+     * @param evt
+     */
     private void volverAddButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {                                                
         MasterApp master = new MasterApp();
         master.setVisible(true);
         master.setLocationRelativeTo(null);
         this.setVisible(false);
-    }                                               
+    }
+    /**
+     *  El metodo main correra los componentes de la ventana
+     * @param args
+     */
     public static void main(String args[]) 
     {
         try {
@@ -206,6 +235,9 @@ public class AddAdmin extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
+            /**
+             * El metodo run hara visibles los componentes de la ventana
+             */
             public void run() {
                 new AddAdmin().setVisible(true);
             }

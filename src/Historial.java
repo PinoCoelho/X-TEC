@@ -6,6 +6,10 @@ public class Historial extends javax.swing.JFrame{
     public javax.swing.JLabel TituloPlatillo;
     public javax.swing.JComboBox<String> Eleccion;
     public javax.swing.JButton PedidoHecho;
+
+    /**
+     * El metodo Historial inicializara los componentes de la ventana
+     */
     public Historial()
     {
         initComponents();
@@ -63,6 +67,11 @@ public class Historial extends javax.swing.JFrame{
 
         pack();
     }
+
+    /**
+     * El metodo ExitActionPerformed direccionara a la ventana de LoginCliente
+     * @param evt
+     */
     private void ExitActionPerformed(java.awt.event.ActionEvent evt)
     {
         ClientApp cliente = new ClientApp();
@@ -70,6 +79,10 @@ public class Historial extends javax.swing.JFrame{
         cliente.setLocationRelativeTo(null);
         this.setVisible(false);
     }
+    /**
+     *  El metodo main correra los componentes de la ventana
+     * @param args
+     */
     public static void main(String args[])
     {
         try {
@@ -89,6 +102,9 @@ public class Historial extends javax.swing.JFrame{
             java.util.logging.Logger.getLogger(Historial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+             * El metodo run hara visibles los componentes de la ventana
+             */
             public void run() {
                 new Historial().setVisible(true);
             }

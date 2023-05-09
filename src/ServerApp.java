@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
+import java.util.List;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
@@ -24,6 +25,9 @@ public class ServerApp {
     static BSTree.BinarySearchTree arbolUser = new BSTree.BinarySearchTree();
     static AVLTree.AVLtree arbolPlatillos = new AVLTree.AVLtree();
     static AVLTree.AVLNode root = arbolPlatillos.root;
+    static ListaEnlazada listaPlatillos = new ListaEnlazada();
+    static Queue colaPedidos = new Queue();
+    static int cantPedidos = 0;
 
     public static class Info {
         public int id;
@@ -549,6 +553,68 @@ public class ServerApp {
         else {
             System.out.println("El platillo a editar no existe en el menu");
         }
+    }
+
+    public static String agregarPlatilloAPedido(String nombrePlatillo) {
+        if (arbolPlatillos.contains(root, generateID(nombrePlatillo))) {
+            listaPlatillos.insertFirst(arbolPlatillos.getPlatillo(root, generateID(nombrePlatillo)));
+            return "Se ha agregado el platillo";
+        }
+        else {
+            return "Ese platillo no se encuentra en el menu";
+        }
+    }
+
+    public static String eliminarPedido() {
+        listaPlatillos.empty();
+        listaPlatillos.resetSize();
+        return "Se ha eliminado el pedido actual";
+    }
+
+    public static String realizarPedido() {
+        if (cantPedidos<9) {
+            colaPedidos.enqueue(new ListaEnlazada().copy(listaPlatillos));
+            cantPedidos++;
+            listaPlatillos.empty();
+            listaPlatillos.resetSize();
+            return "Se ha realizado el pedido";
+        }
+        else {
+            return "Se ha llegado a la cantidad maxima de pedidos";
+        }
+    }
+
+    public static String getPlatillosEnPedido() {
+        int i = 0;
+        String str = "Platillos en el pedido: \n\n";
+        while (listaPlatillos.size() > i) {
+            str = str + listaPlatillos.get(i).nombre;
+            str = str + "\n";
+            i++;
+        }
+        return str;
+    }
+
+    public static String getPlatillosEnColaPedidos() {
+        int i = 0;
+        int j = 0;
+        String str = "";
+        while (colaPedidos.size() > i) {
+            str = str + "Pedido " + Integer.toString(i+1) + "\n\n";
+            while (colaPedidos.get(i).size() > j) {;
+                str = str + "Platillo " + Integer.toString(j+1) + "\n";
+                str = str + "Nombre: " + colaPedidos.get(i).get(j).nombre + "\n";
+                str = str + "Calorias: " + colaPedidos.get(i).get(j).calorias + "\n";
+                str = str + "Tiempo: " + colaPedidos.get(i).get(j).tiempo + "\n";
+                str = str + "Precio: " + colaPedidos.get(i).get(j).precio + "\n";
+                str = str + "\n";
+                j++;
+            }
+            str = str + "\n";
+            i++;
+            j = 0;
+        }
+        return str;
     }
 
 }

@@ -119,7 +119,7 @@ public class MasterApp extends javax.swing.JFrame
         AddAdmin add = new AddAdmin();
         add.setVisible(true);
         add.setLocationRelativeTo(null);
-        this.setVisible(false);
+        this.setVisible(false); //yes
     }                                                  
 
     private void agregarPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 

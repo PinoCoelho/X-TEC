@@ -1,6 +1,7 @@
 package Server;
 
 import Server.ServerApp;
+import org.w3c.dom.Node;
 
 public class AVLTree {
     /**
@@ -175,7 +176,7 @@ public class AVLTree {
          * @param id
          * @return root
          */
-        public static AVLNode delete (AVLNode root, int id)
+        public AVLNode delete (AVLNode root, int id)
         {
             if (root == null)
                 return root;
@@ -463,6 +464,36 @@ public class AVLTree {
             }
 
             return editTiempo(node.left, id, newTiempo);
+        }
+
+        static String menu = "";
+
+        void resetStringMenu() {
+            menu = "";
+        }
+
+        String getMenu(AVLNode node) {
+            if (node != null) {
+                getMenu(node.left);
+                menu = menu + "Nombre: " + node.data.nombre + "\n" + "Calorias: " + node.data.calorias + "\n" + "Tiempo: " + node.data.tiempo + "\n" + "Precio: " + node.data.precio + "\n";
+                getMenu(node.right);
+            }
+            return menu;
+        }
+
+        static int cantPlatillos = 0;
+
+        void resetCantPlatillos() {
+            cantPlatillos = 0;
+        }
+
+        String getCantPlatillos(AVLNode node) {
+            if (node != null) {
+                getCantPlatillos(node.left);
+                cantPlatillos++;
+                getCantPlatillos(node.right);
+            }
+            return Integer.toString(cantPlatillos);
         }
 
     }

@@ -1,5 +1,7 @@
 package Client_Master;
 
+import java.io.IOException;
+
 public class ClientApp extends javax.swing.JFrame {
 
     /**
@@ -55,7 +57,11 @@ public class ClientApp extends javax.swing.JFrame {
         botonRealizarPedidos.setToolTipText("");
         botonRealizarPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRealizarPedidosActionPerformed(evt);
+                try {
+                    botonRealizarPedidosActionPerformed(evt);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -125,7 +131,7 @@ public class ClientApp extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
-    private void botonRealizarPedidosActionPerformed(java.awt.event.ActionEvent evt) {
+    private void botonRealizarPedidosActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         RealizarPedido pedido = new RealizarPedido();
         pedido.setVisible(true);
         pedido.setLocationRelativeTo(null);

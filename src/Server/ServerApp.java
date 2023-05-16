@@ -36,6 +36,7 @@ public class ServerApp {
     static int counterPedidoTotal = 0;
     static boolean pedidoEnProceso = false;
     static boolean timerIniciado = false;
+    static boolean counterActualizado = false;
 
     public static class Info {
         public int id;
@@ -255,8 +256,6 @@ public class ServerApp {
                 deleteXMLAdmin(Integer.toString(id), "C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Administradores.xml");
                 formatXMLFile("C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Administradores.xml");
 
-                System.out.println(arbolAdmin.size);
-
                 return "El administrador " + user + " ha sido borrado";
 
             } else {
@@ -268,7 +267,22 @@ public class ServerApp {
         }
     }
 
-    public static void deleteUser(String user) throws Exception {
+    public static String deleteAdminEdit(String user) throws Exception {
+        int id = generateID(user);
+        if (arbolAdmin.contains(id)) {
+            arbolAdmin.delete(id);
+
+            deleteXMLAdmin(Integer.toString(id), "C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Administradores.xml");
+            formatXMLFile("C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Administradores.xml");
+
+            return "El administrador " + user + " ha sido borrado";
+
+        } else {
+            return "El administrador no existe";
+        }
+    }
+
+    public static String deleteUser(String user) throws Exception {
         int id = generateID(user);
         if (arbolUser.contains(id)) {
             arbolUser.delete(id);
@@ -276,48 +290,55 @@ public class ServerApp {
             deleteXMLUser(Integer.toString(id), "C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Clientes.xml");
             formatXMLFile("C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Clientes.xml");
 
+            return "El usuario ha sido eliminado";
+
+        }
+        else {
+            return "El usuario no existe";
         }
     }
 
     public static String editarAdmin(String usuarioAdminEditar, String newNombre, String newContra) throws Exception {
         if (arbolAdmin.contains(generateID(usuarioAdminEditar))) {
-            deleteAdmin(usuarioAdminEditar);
-            if (newNombre == null && newContra != null) {
+            if (newNombre.equals("") && !newContra.equals("")) {
+                deleteAdminEdit(usuarioAdminEditar);
                 registrarAdmin(usuarioAdminEditar, newContra);
                 arbolAdmin.editPassword(generateID(usuarioAdminEditar), newContra);
                 return "El administrador ha sido editado";
             }
-            else if (newNombre != null && newContra != null){
+            else if (!newNombre.equals("") && !newContra.equals("")){
+                deleteAdminEdit(usuarioAdminEditar);
                 registrarAdmin(newNombre, newContra);
                 arbolAdmin.editPassword(generateID(usuarioAdminEditar), newContra);
                 arbolAdmin.editUser(generateID(usuarioAdminEditar), generateID(newNombre), newNombre);
                 return "El administrador ha sido editado";
             }
             else {
-                return "Se debe poner al menos una nueva contraseña";
+                return "Se debe una nueva contraseña";
             }
         }
         else {
-            return "El administrador no esta registrado, recordarme quitar estos prints";
+            return "El administrador no esta registrado";
         }
     }
 
     public static String editarUser(String usuarioUserEditar, String newNombre, String newContra) throws Exception {
         if (arbolUser.contains(generateID(usuarioUserEditar))) {
-            deleteUser(usuarioUserEditar);
-            if (newNombre == null && newContra != null) {
+            if (newNombre.equals("") && !newContra.equals("")) {
+                deleteUser(usuarioUserEditar);
                 registrarUser(usuarioUserEditar, newContra);
                 arbolUser.editPassword(generateID(usuarioUserEditar), newContra);
                 return "El usuario ha sido editado";
             }
-            else if (newNombre != null && newContra != null){
+            else if (!newNombre.equals("") && !newContra.equals("")){
+                deleteUser(usuarioUserEditar);
                 registrarUser(newNombre, newContra);
                 arbolUser.editPassword(generateID(usuarioUserEditar), newContra);
                 arbolUser.editUser(generateID(usuarioUserEditar), generateID(newNombre), newNombre);
                 return "El usuario ha sido editado";
             }
             else {
-                return "Se debe poner al menos una nueva contraseña";
+                return "Se debe poner una nueva contraseña";
             }
         }
         else {
@@ -495,6 +516,7 @@ public class ServerApp {
     public static String deletePlatillo(String nombrePlatillo) {
         if (arbolPlatillos.contains(root, generateID(nombrePlatillo))) {
             int idPlatillo = generateID(nombrePlatillo);
+            arbolPlatillos.delete(root, idPlatillo);
             String strJson = getJsonFromFile("C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Platillos.json");
             try {
                 JSONParser parser = new JSONParser();
@@ -516,13 +538,13 @@ public class ServerApp {
                 FileWriter fileWriter = new FileWriter("C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Platillos.json");
                 fileWriter.write(mainJsonObject.toString());
                 fileWriter.close();
-                return "El platillo" + nombrePlatillo + " ha sido borrado del menu";
+                return "El platillo " + nombrePlatillo + " ha sido borrado del menu";
             } catch (Exception exception) {
                 return "Ha fallado";
             }
         }
         else {
-            return "El platillo no existe en el menu, recordarme quitar estos prints";
+            return "El platillo no existe en el menu";
         }
     }
 
@@ -552,7 +574,7 @@ public class ServerApp {
                 FileWriter fileWriter = new FileWriter("C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Platillos.json");
                 fileWriter.write(mainJsonObject.toString());
                 fileWriter.close();
-                return "El platillo " + nombre + "ha sido agregado";
+                return "El platillo " + nombre + " ha sido agregado";
             } catch (Exception exception) {
                 return "Ha fallado";
             }
@@ -577,15 +599,15 @@ public class ServerApp {
                     JSONObject jsonPlatillo = (JSONObject) jsonArrayPlatillos.get(i);
 
                     if (jsonPlatillo.get("id").equals(Integer.toString((generateID(nombrePlatilloAEditar))))) { // se puede decidir el momento de hacerlo cuando va por un indice especifico
-                        if (newCalorias != null) {
+                        if (!newCalorias.equals("")) {
                             jsonPlatillo.put("calorias", newCalorias);
                             arbolPlatillos.editCalorias(root, generateID(nombrePlatilloAEditar), newCalorias);
                         }
-                        if (newTiempo != null) {
+                        if (!newTiempo.equals("")) {
                             jsonPlatillo.put("tiempo", newTiempo);
                             arbolPlatillos.editTiempo(root, generateID(nombrePlatilloAEditar), newTiempo);
                         }
-                        if (newPrecio != null) {
+                        if (!newPrecio.equals("")) {
                             jsonPlatillo.put("precio", newPrecio);
                             arbolPlatillos.editPrecio(root, generateID(nombrePlatilloAEditar), newPrecio);
                         }
@@ -595,7 +617,7 @@ public class ServerApp {
                 FileWriter fileWriter = new FileWriter("C:\\Users\\josep\\IdeaProjects\\X-TEC\\src\\Server\\Platillos.json");
                 fileWriter.write(mainJsonObject.toString());
                 fileWriter.close();
-                return "El platillo " + nombrePlatilloAEditar + "ha sido editado";
+                return "El platillo " + nombrePlatilloAEditar + " ha sido editado";
             } catch (Exception exception) {
                 return "Ha fallado";
             }
@@ -622,21 +644,26 @@ public class ServerApp {
     }
 
     public static String realizarPedido() {
-        if (cantPedidos<9) {
-            colaPedidos.enqueue(new ListaEnlazada().copy(listaPlatillos));
-            cantPedidos++;
-            listaPlatillos.empty();
-            listaPlatillos.resetSize();
-            return "Se ha realizado el pedido";
+        if (!listaPlatillos.isEmpty()) {
+            if (cantPedidos < 9) {
+                colaPedidos.enqueue(new ListaEnlazada().copy(listaPlatillos));
+                cantPedidos++;
+                listaPlatillos.empty();
+                listaPlatillos.resetSize();
+                counterActualizado = false;
+                return "Se ha realizado el pedido";
+            } else {
+                return "Se ha llegado a la cantidad maxima de pedidos";
+            }
         }
         else {
-            return "Se ha llegado a la cantidad maxima de pedidos";
+            return "Agregar platillos antes de realizar pedido";
         }
     }
 
     public static String getPlatillosEnPedido() {
         int i = 0;
-        String str = "Platillos en el pedido: \n\n";
+        String str = "";
         while (listaPlatillos.size() > i) {
             str = str + listaPlatillos.get(i).nombre;
             str = str + "\n";
@@ -650,17 +677,15 @@ public class ServerApp {
         int j = 0;
         String str = "";
         while (colaPedidos.size() > i) {
-            str = str + "Pedido " + Integer.toString(i+1) + "\n\n";
+            str = str + "PEDIDO " + Integer.toString(i+1) + "\n";
             while (colaPedidos.get(i).size() > j) {;
                 str = str + "Platillo " + Integer.toString(j+1) + "\n";
                 str = str + "Nombre: " + colaPedidos.get(i).get(j).nombre + "\n";
                 str = str + "Calorias: " + colaPedidos.get(i).get(j).calorias + "\n";
                 str = str + "Tiempo: " + colaPedidos.get(i).get(j).tiempo + "\n";
-                str = str + "Precio: " + colaPedidos.get(i).get(j).precio + "\n";
-                str = str + "\n";
+                str = str + "Precio: " + colaPedidos.get(i).get(j).precio + "\n";;
                 j++;
-            }
-            str = str + "\n";
+            };
             i++;
             j = 0;
         }
@@ -686,20 +711,42 @@ public class ServerApp {
             @Override
             public void run() {
 
-                if (!colaPedidos.isEmpty()) {
-                    if (!pedidoEnProceso) {
-                        counterPedidoActual = getTiempoPedidoActual();
-                        pedidoEnProceso = true;
+                if (counterActualizado) {
+                    if (!colaPedidos.isEmpty()) {
+                        if (!pedidoEnProceso) {
+                            counterPedidoActual = getTiempoPedidoActual();
+                            pedidoEnProceso = true;
+                        } else {
+                            if (counterPedidoActual == 0) {
+                                colaPedidos.dequeue();
+                                cantPedidos--;
+                                try {
+                                    Controller.activeBuzzer.setValue(1);
+                                    Thread.sleep(100);
+                                    Controller.activeBuzzer.setValue(0);
+                                    Thread.sleep(100);
+                                    Controller.activeBuzzer.setValue(1);
+                                    Thread.sleep(100);
+                                    Controller.activeBuzzer.setValue(0);
+                                } catch (IOException | InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                pedidoEnProceso = false;
+                            } else {
+                                counterPedidoActual--;
+                                counterPedidoTotal--;
+                            }
+                        }
                     }
                     else {
-                        if (counterPedidoActual == 0) {
-                            colaPedidos.dequeue();
-                            pedidoEnProceso = false;
-                        }
-                        else {
-                            counterPedidoActual --;
-                        }
+                        counterPedidoTotal = 0;
+                        counterPedidoActual = 0;
+                        counterActualizado = true;
                     }
+                }
+                else {
+                    counterPedidoTotal = getTiempoPedidoTotal();
+                    counterActualizado = true;
                 }
             }
         };
@@ -716,12 +763,34 @@ public class ServerApp {
 
     static int getTiempoPedidoTotal() {
         int tiempo = 0;
-        for (int i = 0; i < colaPedidos.size(); i++) {
+        for (int i = 0; i < cantPedidos; i++) {
             for (int j = 0; j < colaPedidos.get(i).size(); j++) {
                 tiempo = tiempo + Integer.parseInt(colaPedidos.get(i).get(j).tiempo);
             }
         }
         return tiempo;
+    }
+
+    static String getMenu() {
+        String str = arbolPlatillos.getMenu(root);
+        arbolPlatillos.resetStringMenu();
+        return str;
+    }
+
+    static String cantPlatillosEnMenu() {
+        String str = arbolPlatillos.getCantPlatillos(root);
+        arbolPlatillos.resetCantPlatillos();
+        return str;
+    }
+
+    static String convertirSegEnTimer(int totalSecs) {
+        int hours = totalSecs / 3600;
+        int minutes = (totalSecs % 3600) / 60;
+        int seconds = totalSecs % 60;
+
+        String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+
+        return timeString;
     }
 
 }

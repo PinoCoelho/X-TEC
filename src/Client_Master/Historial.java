@@ -43,7 +43,7 @@ public class Historial extends javax.swing.JFrame {
         textAreaHistorial.setEditable(false);
         textAreaHistorial.setColumns(20);
         textAreaHistorial.setRows(5);
-        textAreaHistorial.setText("dsadasd");
+        textAreaHistorial.setText("");
         jScrollPane1.setViewportView(textAreaHistorial);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

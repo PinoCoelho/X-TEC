@@ -1,5 +1,8 @@
 package Client_Master;
 
+import javax.swing.*;
+import java.io.IOException;
+
 public class ElimEditPlatillos extends javax.swing.JFrame {
 
     /**
@@ -50,7 +53,11 @@ public class ElimEditPlatillos extends javax.swing.JFrame {
         eliminarPlatilloButton.setText("Eliminar");
         eliminarPlatilloButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarPlatilloButtonActionPerformed(evt);
+                try {
+                    eliminarPlatilloButtonActionPerformed(evt);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -116,8 +123,11 @@ public class ElimEditPlatillos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void eliminarPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void eliminarPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
+        Sockets.out.println("deletePlatillo");
+        Sockets.out.println(selectPlatilloTextField.getText());
+        JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), Sockets.in.readLine(), "", JOptionPane.ERROR_MESSAGE);
+        selectPlatilloTextField.setText("");
     }
 
     private void editPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) {

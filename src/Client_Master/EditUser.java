@@ -3,12 +3,12 @@ package Client_Master;
 import javax.swing.*;
 import java.io.IOException;
 
-public class EditAdmin extends javax.swing.JFrame {
+public class EditUser extends javax.swing.JFrame {
 
     /**
-     * Creates new form EditAdmin
+     * Creates new form EditUser
      */
-    public EditAdmin() {
+    public EditUser() {
         initComponents();
     }
 
@@ -21,7 +21,6 @@ public class EditAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        labelNewContra = new javax.swing.JLabel();
         botonEdit = new javax.swing.JButton();
         newContraField = new javax.swing.JPasswordField();
         labelLogin = new javax.swing.JLabel();
@@ -30,11 +29,10 @@ public class EditAdmin extends javax.swing.JFrame {
         labelNewUser = new javax.swing.JLabel();
         newNameField = new javax.swing.JPasswordField();
         botonVolver = new javax.swing.JButton();
+        labelNewContra = new javax.swing.JLabel();
+        botonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        labelNewContra.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
-        labelNewContra.setText("Introduzca su nueva contraseña");
 
         botonEdit.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
         botonEdit.setText("Editar");
@@ -63,7 +61,7 @@ public class EditAdmin extends javax.swing.JFrame {
         labelLogin.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         labelUserName.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
-        labelUserName.setText("Introduzca el usuario a editar");
+        labelUserName.setText("Introduzca el usuario a editar o eliminar");
 
         usernameField.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
         usernameField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -87,36 +85,44 @@ public class EditAdmin extends javax.swing.JFrame {
             }
         });
 
+        labelNewContra.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
+        labelNewContra.setText("Introduzca su nueva contraseña");
+
+        botonEliminar.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
+        botonEliminar.setText("Eliminar");
+        botonEliminar.setToolTipText("");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    botonEliminarActionPerformed(evt);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(183, 183, 183)
-                                                .addComponent(labelUserName))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(248, 248, 248)
-                                                .addComponent(botonEdit)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(175, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(newNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(185, 185, 185))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                        .addComponent(newContraField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(2, 2, 2))
-                                                                .addComponent(labelNewContra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addComponent(labelLogin)
-                                                                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(183, 183, 183))))
+                                        .addComponent(newNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(labelNewContra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                                        .addComponent(botonEliminar)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(botonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(newContraField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGap(2, 2, 2)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(labelLogin)
+                                                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(183, 183, 183))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(labelNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,6 +131,10 @@ public class EditAdmin extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(botonVolver)
                                 .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(labelUserName)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,20 +155,23 @@ public class EditAdmin extends javax.swing.JFrame {
                                 .addComponent(labelNewContra)
                                 .addGap(18, 18, 18)
                                 .addComponent(newContraField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(botonEdit)
-                                .addContainerGap(97, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(botonEdit)
+                                        .addComponent(botonEliminar))
+                                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>
 
     private void botonEditActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
-        Sockets.out.println("editarAdmin");
+        Sockets.out.println("editarUser");
         Sockets.out.println(usernameField.getText());
         Sockets.out.println(newNameField.getText());
         Sockets.out.println(newContraField.getText());
         JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), Sockets.in.readLine(), "", JOptionPane.ERROR_MESSAGE);
+        usernameField.setText("");
         newNameField.setText("");
         newContraField.setText("");
     }
@@ -172,10 +185,19 @@ public class EditAdmin extends javax.swing.JFrame {
     }
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {
-        AddAdmin add = new AddAdmin();
-        add.setVisible(true);
-        add.setLocationRelativeTo(null);
+        MasterApp master = new MasterApp();
+        master.setVisible(true);
+        master.setLocationRelativeTo(null);
         this.setVisible(false);
+    }
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
+        Sockets.out.println("deleteUser");
+        Sockets.out.println(usernameField.getText());
+        JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), Sockets.in.readLine(), "", JOptionPane.ERROR_MESSAGE);
+        usernameField.setText("");
+        newNameField.setText("");
+        newContraField.setText("");
     }
 
     /**
@@ -195,26 +217,27 @@ public class EditAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditAdmin().setVisible(true);
+                new EditUser().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify
     private javax.swing.JButton botonEdit;
+    private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonVolver;
     private javax.swing.JLabel labelLogin;
     private javax.swing.JLabel labelNewContra;

@@ -3,12 +3,19 @@ package Server;
 import Server.ServerApp;
 
 public class AVLTree {
+    /**
+     * La clase AVLNode establece su informacion
+     */
     static class AVLNode {
         ServerApp.Platillo data;
         AVLNode left;
         AVLNode right;
         int height;
 
+        /**
+         * El AVLNode establece la informacion del platillo
+         * @param data
+         */
         AVLNode(ServerApp.Platillo data) {
             this.data = data;
             this.left = null;
@@ -17,10 +24,19 @@ public class AVLTree {
         }
     }
 
+    /**
+     * El metodo AVLtree establece el AVLNode en la raiz del arbol
+     */
     static class AVLtree {
         AVLNode root;
 
         // get height of a node
+
+        /**
+         * El metodo height obtiene la alutura del arbol
+         * @param node
+         * @return height
+         */
         static int height(AVLNode node) {
             if (node == null) {
                 return 0;
@@ -29,6 +45,11 @@ public class AVLTree {
         }
 
         // get the balance factor of a node
+        /**
+         * EL metodo getBalance obtiene el factor de balance del nodo
+         * @param node
+         * @return height(node.left) - height(node.right)
+         */
         static int getBalance(AVLNode node) {
             if (node == null) {
                 return 0;
@@ -37,6 +58,12 @@ public class AVLTree {
         }
 
         // right rotate subtree rooted with y
+
+        /**
+         * El metodo rightRotate realiza la rotacion hacia la derecha del subarbol
+         * @param y
+         * @return x
+         */
         static AVLNode rightRotate(AVLNode y) {
             AVLNode x = y.left;
             AVLNode t2 = x.right;
@@ -54,6 +81,11 @@ public class AVLTree {
         }
 
         // left rotate subtree rooted with x
+        /**
+         * El metodo leftRotate realiza la rotacion hacia la izquierda del subarbol
+         * @param x
+         * @return y
+         */
         static AVLNode leftRotate(AVLNode x) {
             AVLNode y = x.right;
             AVLNode t2 = y.left;
@@ -71,6 +103,13 @@ public class AVLTree {
         }
 
         // insert a node in the AVL tree
+
+        /**
+         * El metodo insert inserta un nudo en el arbol AVL
+         * @param node
+         * @param data
+         * @return node
+         */
         public static AVLNode insert(AVLNode node, ServerApp.Platillo data) {
             // perform normal BST insertion
             if (node == null) {
@@ -117,6 +156,11 @@ public class AVLTree {
             return node;
         }
 
+        /**
+         * El metodo minValueNode obtiene el nodo con el valor mas bajo
+         * @param node
+         * @return temp
+         */
         static AVLNode minValueNode(AVLNode node)
         {
             AVLNode temp;
@@ -125,6 +169,12 @@ public class AVLTree {
             return temp;
         }
 
+        /**
+         * El metodo delete elimina el nodo  con el id especificado
+         * @param root
+         * @param id
+         * @return root
+         */
         public static AVLNode delete (AVLNode root, int id)
         {
             if (root == null)
@@ -194,6 +244,13 @@ public class AVLTree {
         }
 
         // search for a node in the AVL tree
+
+        /**
+         * El metodo contains busca un nodo en el arbol AVL
+         * @param node
+         * @param id
+         * @return
+         */
         boolean contains(AVLNode node, int id) {
             if (node == null) {
                 return false;
@@ -209,6 +266,12 @@ public class AVLTree {
             return contains(node.left, id);
         }
 
+        /**
+         * getPlatillo busca el platillo  en el arbol
+         * @param node
+         * @param id
+         * @return node
+         */
         ServerApp.Platillo getPlatillo(AVLNode node, int id) {
             if (node == null) {
                 return null;
@@ -224,6 +287,12 @@ public class AVLTree {
             return getPlatillo(node.left, id);
         }
 
+        /**
+         * El getNombre obtiene el nombre platillo en el arbol
+         * @param node
+         * @param id
+         * @return node
+         */
         String getNombre(AVLNode node, int id) {
             if (node == null) {
                 return null;
@@ -239,6 +308,12 @@ public class AVLTree {
             return getNombre(node.left, id);
         }
 
+        /**
+         * getCalorias obtiene las calorias del platillo en el arbol
+         * @param node
+         * @param id
+         * @return node
+         */
         String getCalorias(AVLNode node, int id) {
             if (node == null) {
                 return null;
@@ -254,6 +329,12 @@ public class AVLTree {
             return getCalorias(node.left, id);
         }
 
+        /**
+         * getTiempo obtiene el tiempo de preparacion del platillo
+         * @param node
+         * @param id
+         * @return node
+         */
         String getTiempo(AVLNode node, int id) {
             if (node == null) {
                 return null;
@@ -269,6 +350,12 @@ public class AVLTree {
             return getTiempo(node.left, id);
         }
 
+        /**
+         * getPrecio obtiene el precio del platillo
+         * @param node
+         * @param id
+         * @return node
+         */
         String getPrecio(AVLNode node, int id) {
             if (node == null) {
                 return null;
@@ -284,6 +371,14 @@ public class AVLTree {
             return getPrecio(node.left, id);
         }
 
+        /**
+         * editNombre modifica el nombre del platillo
+         * @param node
+         * @param id
+         * @param newNombre
+         * @param newID
+         * @return newID
+         */
         String editNombre(AVLNode node, int id, String newNombre, int newID) {
             if (node == null) {
                 return null;
@@ -301,6 +396,13 @@ public class AVLTree {
             return editNombre(node.left, id, newNombre, newID);
         }
 
+        /**
+         * editCalorias modifica las calorias del platillo
+         * @param node
+         * @param id
+         * @param newCalorias
+         * @return newCalorias
+         */
         String editCalorias(AVLNode node, int id, String newCalorias) {
             if (node == null) {
                 return null;
@@ -317,6 +419,13 @@ public class AVLTree {
             return editCalorias(node.left, id, newCalorias);
         }
 
+        /**
+         * editPrecio modifica el precio del platillo
+         * @param node
+         * @param id
+         * @param newPrecio
+         * @return newPrecio
+         */
         String editPrecio(AVLNode node, int id, String newPrecio) {
             if (node == null) {
                 return null;
@@ -333,6 +442,13 @@ public class AVLTree {
             return editPrecio(node.left, id, newPrecio);
         }
 
+        /**
+         * editTiempo modifica el tiempo de preparacion del platillo
+         * @param node
+         * @param id
+         * @param newTiempo
+         * @return newTiempo
+         */
         String editTiempo(AVLNode node, int id, String newTiempo) {
             if (node == null) {
                 return null;

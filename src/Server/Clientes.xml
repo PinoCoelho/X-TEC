@@ -1,0 +1,12 @@
+<Clientes>
+    <Cliente>
+        <id>33</id>
+        <Usuario>Jose Pablo</Usuario>
+        <Contra>Pablo</Contra>
+    </Cliente>
+    <Cliente>
+        <id>34</id>
+        <Usuario>Armando</Usuario>
+        <Contra>12345</Contra>
+    </Cliente>
+</Clientes>

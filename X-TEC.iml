@@ -16,5 +16,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="firmata4j-2.3.5" level="project" />
   </component>
 </module>

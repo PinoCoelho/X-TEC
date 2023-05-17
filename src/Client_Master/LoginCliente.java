@@ -1,6 +1,7 @@
 package Client_Master;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class LoginCliente extends javax.swing.JFrame {
 
@@ -31,6 +32,7 @@ public class LoginCliente extends javax.swing.JFrame {
         labelRegistrarse = new javax.swing.JLabel();
         botonRegistrarse = new javax.swing.JButton();
         contraField = new javax.swing.JPasswordField();
+        botonCerrarApp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +94,19 @@ public class LoginCliente extends javax.swing.JFrame {
             }
         });
 
+        botonCerrarApp.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
+        botonCerrarApp.setText("Cerrar aplicacion");
+        botonCerrarApp.setToolTipText("");
+        botonCerrarApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    botonCerrarAppActionPerformed(evt);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,48 +115,52 @@ public class LoginCliente extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 186, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                .addComponent(labelLogin)
-                                                                                .addGap(89, 89, 89))
-                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                .addComponent(labelUserName)
-                                                                                .addGap(55, 55, 55))
-                                                                        .addComponent(labelContra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                .addComponent(botonUserLogin)
-                                                                                .addGap(98, 98, 98))
-                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                .addComponent(labelRegistrarse)
-                                                                                .addGap(63, 63, 63))
-                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                .addComponent(botonRegistrarse)
-                                                                                .addGap(75, 75, 75))
-                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(contraField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addGap(30, 30, 30)))
-                                                                .addGap(158, 158, 158))
+                                                                .addComponent(labelLogin)
+                                                                .addGap(89, 89, 89))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                .addComponent(labelUserName)
+                                                                .addGap(55, 55, 55))
+                                                        .addComponent(labelContra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                .addComponent(botonUserLogin)
+                                                                .addGap(98, 98, 98))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                .addComponent(labelRegistrarse)
+                                                                .addGap(63, 63, 63))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                .addComponent(botonRegistrarse)
+                                                                .addGap(75, 75, 75))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(labelAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                .addComponent(botonAdminLogin)
-                                                                                .addGap(38, 38, 38)))
-                                                                .addGap(27, 27, 27))))
+                                                                        .addComponent(contraField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(30, 30, 30)))
+                                                .addGap(158, 158, 158))
                                         .addComponent(labelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(botonCerrarApp)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(botonAdminLogin)
+                                                .addGap(38, 38, 38))
+                                        .addComponent(labelAdmin))
+                                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
-                                .addComponent(labelAdmin)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonAdminLogin)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(labelAdmin)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(botonAdminLogin))
+                                        .addComponent(botonCerrarApp))
                                 .addGap(31, 31, 31)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
@@ -168,6 +187,13 @@ public class LoginCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Funcionalidad de boton que
+     * lleva a la ventana en la
+     * que inician sesion los
+     * administradores.
+     * @param evt se presiona el boton
+     */
     private void botonAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {
         LoginAdmin admin = new LoginAdmin();
         admin.setVisible(true);
@@ -175,6 +201,13 @@ public class LoginCliente extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
+    /**
+     * Funcionalidad de boton para verificar
+     * al usuario enviandole un output al
+     * servidor con la informacion que se
+     * encuentra en los textfield.
+     * @param evt
+     */
     private void botonUserLoginActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Sockets.out.println("validarUser");
@@ -195,6 +228,12 @@ public class LoginCliente extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Funcionalidad de boton que
+     * abre la ventana para registrar un
+     * nuevo usuario.
+     * @param evt
+     */
     private void botonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {
         Register admin = new Register();
         admin.setVisible(true);
@@ -203,6 +242,21 @@ public class LoginCliente extends javax.swing.JFrame {
     }
 
     private void contraFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    /**
+     * Boton que cierra la aplicacion
+     * de manera segura junto con los
+     * sockets, el servidor y el
+     * arduino.
+     * @param evt
+     * @throws IOException
+     */
+    private void botonCerrarAppActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
+        Sockets.out.println("TERMINATE");
+        Sockets.cerrarSocket();
+        this.setVisible(false);
     }
 
     /**
@@ -242,6 +296,7 @@ public class LoginCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JButton botonAdminLogin;
+    private javax.swing.JButton botonCerrarApp;
     private javax.swing.JButton botonRegistrarse;
     private javax.swing.JButton botonUserLogin;
     private javax.swing.JPasswordField contraField;

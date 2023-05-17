@@ -140,6 +140,11 @@ public class MasterApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Funcionalidad de boton para
+     * devolver a la ventana anterior
+     * @param evt se presiona el boton
+     */
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {
         LoginCliente login = new LoginCliente();
         login.setVisible(true);
@@ -147,6 +152,12 @@ public class MasterApp extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
+    /**
+     * Funcionalidad de boton que
+     * abre la ventana para agregar
+     * administradores
+     * @param evt
+     */
     private void botonAddAdminActionPerformed(java.awt.event.ActionEvent evt) {
         AddAdmin add = new AddAdmin();
         add.setVisible(true);
@@ -154,6 +165,12 @@ public class MasterApp extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
+    /**
+     * Funcionalidad de boton que
+     * abre la ventana para agregar
+     * platillos
+     * @param evt
+     */
     private void botonAgregarPlatillosActionPerformed(java.awt.event.ActionEvent evt) {
         AddPlatillo addPlatillo = new AddPlatillo();
         addPlatillo.setVisible(true);
@@ -161,6 +178,12 @@ public class MasterApp extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
+    /**
+     * Funcionalidad de boton que
+     * abre la ventana para ver
+     * la cola de pedidos
+     * @param evt
+     */
     private void botonPedidosActivosActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         PedidosActivos pedidos = new PedidosActivos();
         pedidos.setVisible(true);
@@ -168,6 +191,12 @@ public class MasterApp extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
+    /**
+     * Funcionalidad de boton que
+     * abre la ventana para eliminar
+     * o editar platillos
+     * @param evt
+     */
     private void botonElimEditPlatillosActionPerformed(java.awt.event.ActionEvent evt) {
         ElimEditPlatillos elimEdit = new ElimEditPlatillos();
         elimEdit.setVisible(true);
@@ -175,6 +204,12 @@ public class MasterApp extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
+    /**
+     * Funcionalidad de boton que
+     * abre la ventana para editar
+     * usuarios
+     * @param evt
+     */
     private void botonEditUserActionPerformed(java.awt.event.ActionEvent evt) {
         EditUser elimEdit = new EditUser();
         elimEdit.setVisible(true);

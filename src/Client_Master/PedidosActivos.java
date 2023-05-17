@@ -36,6 +36,11 @@ public class PedidosActivos extends javax.swing.JFrame {
         pedidosActivos.setEditable(false);
         pedidosActivos.setColumns(20);
         pedidosActivos.setRows(5);
+        /**
+         * Thread que obtiene los pedidos
+         * en la cola del server y se los muestra
+         * al administrador.
+         */
         new Thread(() -> {
             while (active) {
                 try {
@@ -99,6 +104,11 @@ public class PedidosActivos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Funcionalidad de boton para
+     * volver a la ventana anterior
+     * @param evt se presiona el boton
+     */
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {
         active = false;
         MasterApp master = new MasterApp();

@@ -1,9 +1,12 @@
 package Client_Master;
 
+import java.io.IOException;
+
 public class Historial extends javax.swing.JFrame {
 
     /**
-     * Creates new form Historial
+     * Se crea un nuevo jFrame form
+     * para Historial.
      */
     public Historial() {
         initComponents();
@@ -27,7 +30,28 @@ public class Historial extends javax.swing.JFrame {
 
         botonVolver.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
         botonVolver.setText("Volver");
-        botonVolver.setToolTipText("");
+        /**
+         * Thread que envia outputs al
+         * servidor para obtener el historial
+         * del usuario y mostrarselo en un
+         * text box.
+         */
+        new Thread(() -> {
+            while (active) {
+                try {
+                    Sockets.out.println("getHistorial");
+                    String inputLine;
+                    String str = "";
+                    while (!(inputLine = Sockets.in.readLine()).equals("END")) {
+                        str = str + inputLine + "\n";
+                    }
+                    textAreaHistorial.setText(str);
+                }
+                catch (IOException except) {
+                    System.out.println("Error");
+                }
+            }
+        }).start();
         botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonVolverActionPerformed(evt);
@@ -76,7 +100,13 @@ public class Historial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Boton para ir a la ventana
+     * anterior.
+     * @param evt se presiona el boton
+     */
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {
+        active = false;
         ClientApp cliente = new ClientApp();
         cliente.setVisible(true);
         cliente.setLocationRelativeTo(null);
@@ -123,5 +153,6 @@ public class Historial extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelHistorial;
     private javax.swing.JTextArea textAreaHistorial;
+    boolean active = true;
     // End of variables declaration
 }

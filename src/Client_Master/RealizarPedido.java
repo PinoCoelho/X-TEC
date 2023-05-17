@@ -66,6 +66,12 @@ public class RealizarPedido extends javax.swing.JFrame {
         menuTextArea.setColumns(15);
         menuTextArea.setRows(5);
         jScrollPane1.setViewportView(menuTextArea);
+        /**
+         * Se le envia una señal al server
+         * para obtener el menu en un string
+         * y se le muestra al usuario en un
+         * textbox.
+         */
         Sockets.out.println("getMenu");
         int cantPlatillos = Integer.parseInt(Sockets.in.readLine());
         String r = "";
@@ -196,6 +202,11 @@ public class RealizarPedido extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Funcionalidad de boton para
+     * volver a la ventana anterior
+     * @param evt
+     */
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {
         ClientApp cliente = new ClientApp();
         cliente.setVisible(true);
@@ -203,12 +214,32 @@ public class RealizarPedido extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
+    /**
+     * Funcionalidad de boton para
+     * borrar el pedido actual, se
+     * envia un output al servidor para
+     * que llame al metodo que elimina
+     * los contenidos del pedido y
+     * se muestra al usuario
+     * @param evt se presiona el boton
+     * @throws IOException en caso de que el socket de error
+     */
     private void botonBorrarPedidoActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         Sockets.out.println("eliminarPedido");
         JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), Sockets.in.readLine(), "", JOptionPane.ERROR_MESSAGE);
         platillosTextArea.setText("");
     }
 
+    /**
+     * Funcionalidad de boton para
+     * agregarun platillo a
+     * el pedido actual, se
+     * envia un output al servidor para
+     * que llame al metodo que agrega platillos
+     * al pedido y se muestra al usuario
+     * @param evt se presiona el boton
+     * @throws IOException en caso de que el socket de error
+     */
     private void botonAgregarPlatilloActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         Sockets.out.println("agregarPlatilloAPedido");
         Sockets.out.println(nameField.getText());
@@ -223,6 +254,16 @@ public class RealizarPedido extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Funcionalidad de boton para realizar
+     * el pedido, se envia un output al
+     * servidor para que llame a la funcion
+     * que realiza el pedido con los contenidos
+     * que tiene en ese momento, se muestra al
+     * usuario la informacion necesaria.
+     * @param evt se presiona el boton
+     * @throws IOException en caso de que el socket de error
+     */
     private void botonRealizarPedidoActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         Sockets.out.println("realizarPedido");
         JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), Sockets.in.readLine(), "", JOptionPane.ERROR_MESSAGE);

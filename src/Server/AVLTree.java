@@ -111,7 +111,7 @@ public class AVLTree {
          * @param data
          * @return node
          */
-        public static AVLNode insert(AVLNode node, ServerApp.Platillo data) {
+        public AVLNode insert(AVLNode node, ServerApp.Platillo data) {
             // perform normal BST insertion
             if (node == null) {
                 return new AVLNode(data);

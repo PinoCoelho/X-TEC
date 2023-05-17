@@ -22,6 +22,11 @@ public class AddPlatillo extends javax.swing.JFrame {
         initComponents();
     }
 
+    /**
+     * Metodo creado por java swing para
+     * crear una ventana y agregar sus
+     * componentes. Este se crea automaticamente.
+     */
     @SuppressWarnings("")                         
     private void initComponents() 
     {
@@ -142,8 +147,13 @@ public class AddPlatillo extends javax.swing.JFrame {
         );
 
         pack();
-    }                        
+    }
 
+    /**
+     * Funcionalidad de boton para
+     * volver a la ventana anterior.
+     * @param evt se presiona el boton
+     */
     private void volverPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) 
     {
         MasterApp master = new MasterApp();
@@ -151,8 +161,18 @@ public class AddPlatillo extends javax.swing.JFrame {
         master.setLocationRelativeTo(null);
         this.setVisible(false);
 
-    }                                                    
+    }
 
+    /**
+     * Funcionalidad de boton para agregar
+     * un platillo al menu, se hace uso del
+     * socket para enviar un output al servidor
+     * con la informacion en los textfields,
+     * luego se muestra un mensaje con el resultado
+     * del metodo.
+     * @param evt se presiona el boton
+     * @throws IOException en caso de que el socket falle
+     */
     private void añadirPlatilloButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         Sockets.out.println("agregarPlatillo");
         Sockets.out.println(nombrePlatilloTextField.getText());
@@ -164,7 +184,14 @@ public class AddPlatillo extends javax.swing.JFrame {
         caloriasPlatilloTextField.setText("");
         tiempoPlatilloTextfield.setText("");
         precioPlatilloTextField.setText("");
-    }                                                    
+    }
+
+    /**
+     * Funcion main en caso de que
+     * se quiera acceder a la ventana
+     * directamente.
+     * @param args
+     */
     public static void main(String args[]) 
     {
         try {

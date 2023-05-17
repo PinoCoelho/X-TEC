@@ -139,6 +139,14 @@ public class LoginAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Funcionalidad de boton para
+     * iniciar sesion de los administradores,
+     * se envia un output al servidor para
+     * verificar al admin con la informacion
+     * que se encuentra en los textbox.
+     * @param evt se presiona el boton
+     */
     private void botonAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Sockets.out.println("validarAdmin");
@@ -163,6 +171,11 @@ public class LoginAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    /**
+     * Funcionalidad de boton
+     * para volver a la anterior ventana.
+     * @param evt
+     */
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {
         LoginCliente cliente = new LoginCliente();
         cliente.setVisible(true);

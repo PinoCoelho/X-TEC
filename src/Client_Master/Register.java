@@ -148,6 +148,15 @@ public class Register extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    /**
+     * Funcionalidad de boton para registrarse
+     * como un nuevo usuario, se le envia un
+     * output al servidor para que llame a un
+     * metodo que agrega usuarios al sistema
+     * y se le muestra la informacion al usuario
+     * @param evt se presiona el boton
+     * @throws IOException en caso de que el socket de error
+     */
     private void botonRegisterActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         Sockets.out.println("registrarUser");
         Sockets.out.println(usernameField.getText());
@@ -161,6 +170,11 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    /**
+     * Funcionalidad de boton para
+     * volver a la ventana anterior
+     * @param evt se presiona el boton
+     */
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {
         LoginCliente cliente = new LoginCliente();
         cliente.setVisible(true);

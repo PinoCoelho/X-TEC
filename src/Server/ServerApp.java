@@ -31,6 +31,7 @@ public class ServerApp {
     static AVLTree.AVLNode root = arbolPlatillos.root;
     static ListaEnlazada listaPlatillos = new ListaEnlazada();
     static Queue colaPedidos = new Queue();
+    static Queue historial = new Queue();
     static int cantPedidos = 0;
     static int counterPedidoActual = 0;
     static int counterPedidoTotal = 0;
@@ -643,11 +644,21 @@ public class ServerApp {
         return "Se ha eliminado el pedido actual";
     }
 
-    public static String realizarPedido() {
+    public static String eliminarHistorial() {
+        historial.empty();
+        historial.resetSize();
+        return "Se ha borrado el historial del usuario";
+    }
+
+    public static String realizarPedido() throws IOException, InterruptedException {
         if (!listaPlatillos.isEmpty()) {
             if (cantPedidos < 9) {
                 colaPedidos.enqueue(new ListaEnlazada().copy(listaPlatillos));
+                historial.enqueue(new ListaEnlazada().copy(listaPlatillos));
                 cantPedidos++;
+                Controller.activeBuzzer.setValue(1);
+                Thread.sleep(100);
+                Controller.activeBuzzer.setValue(0);
                 listaPlatillos.empty();
                 listaPlatillos.resetSize();
                 counterActualizado = false;
@@ -690,6 +701,48 @@ public class ServerApp {
             j = 0;
         }
         return str;
+    }
+
+    public static String getHistorial() {
+        int i = 0;
+        int j = 0;
+        String str = "";
+        while (historial.size() > i) {
+            str = str + "PEDIDO " + Integer.toString(i+1) + "\n";
+            while (historial.get(i).size() > j) {;
+                str = str + "Platillo " + Integer.toString(j+1) + "\n";
+                str = str + "Nombre: " + historial.get(i).get(j).nombre + "\n";
+                str = str + "Calorias: " + historial.get(i).get(j).calorias + "\n";
+                str = str + "Tiempo: " + historial.get(i).get(j).tiempo + "\n";
+                str = str + "Precio: " + historial.get(i).get(j).precio + "\n";;
+                j++;
+            };
+            i++;
+            j = 0;
+        }
+        return str;
+    }
+
+    public static String getFirstPedidoEnCola() {
+        int j = 0;
+        String str = "";
+        str = str + "PEDIDO ACTIVO" + "\n";
+        if (!colaPedidos.isEmpty()) {
+            while (colaPedidos.getFirst().size() > j) {
+                ;
+                str = str + "Platillo " + Integer.toString(j + 1) + "\n";
+                str = str + "Nombre: " + colaPedidos.getFirst().get(j).nombre + "\n";
+                str = str + "Calorias: " + colaPedidos.getFirst().get(j).calorias + "\n";
+                str = str + "Tiempo: " + colaPedidos.getFirst().get(j).tiempo + "\n";
+                str = str + "Precio: " + colaPedidos.getFirst().get(j).precio + "\n";
+                ;
+                j++;
+            }
+            return str;
+        }
+        else {
+            return str;
+        }
     }
 
     public static void iniciarTimer() {

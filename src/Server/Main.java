@@ -20,7 +20,7 @@ public class Main {
         }).start();
         try {
             // Create a server socket on port 5000
-            ServerSocket serverSocket = new ServerSocket(5000);
+            ServerSocket serverSocket = new ServerSocket(2525);
 
             // Wait for a client to connect
             Socket socket = serverSocket.accept();
@@ -29,8 +29,10 @@ public class Main {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
+            boolean funcionando = true;
+
             // Read input from the client and send a response
-            while (true) {
+            while (funcionando) {
                 String inputLine = in.readLine();
                 if (inputLine != null) {
                     if (inputLine.equals("validarUser")) {
@@ -86,9 +88,6 @@ public class Main {
                         out.println(ServerApp.getPlatillosEnPedido());
                     }
                     else if (inputLine.equals("realizarPedido")) {
-                        Controller.activeBuzzer.setValue(1);
-                        Thread.sleep(100);
-                        Controller.activeBuzzer.setValue(0);
                         out.println(ServerApp.realizarPedido());
                     }
                     else if (inputLine.equals("eliminarPedido")) {
@@ -102,7 +101,22 @@ public class Main {
                     }
                     else if (inputLine.equals("getColaPedidosUser")) {
                         out.println(ServerApp.convertirSegEnTimer(ServerApp.counterPedidoActual));
-                        out.println(ServerApp.getPlatillosEnColaPedidos());
+                        out.println(ServerApp.getFirstPedidoEnCola());
+                        out.println("END");
+                    }
+                    else if (inputLine.equals("TERMINATE")) {
+                        in.close();
+                        out.close();
+                        serverSocket.close();
+                        socket.close();
+                        Controller.controllerFuncionando = false;
+                        funcionando = false;
+                    }
+                    else if (inputLine.equals("eliminarHistorial")) {
+                        ServerApp.eliminarHistorial();
+                    }
+                    else if (inputLine.equals("getHistorial")) {
+                        out.println(ServerApp.getHistorial());
                         out.println("END");
                     }
                 }
@@ -111,9 +125,7 @@ public class Main {
         }
         catch (Exception e) {
             System.out.println("Exception caught when trying to listen on port or listening for a connection");
-        }
-        finally {
-            System.out.println("Hola");
+            System.out.println(e);
         }
     }
 }

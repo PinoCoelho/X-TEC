@@ -2,7 +2,7 @@ package Server;
 
 public class Queue {
     class Node {
-        private ListaEnlazada data; // el data de los nodos es un array
+        private ListaEnlazada data; // el data de los nodos es una lista enlazada
         private Queue.Node next; // next es el siguiente nodo
 
         public Node(ListaEnlazada data) {
@@ -12,7 +12,7 @@ public class Queue {
 
         /**
          * Metodo para obtener los valores de un nodo
-         * @return el data de un nodo en forma de array
+         * @return el data de un nodo en forma de lista enlazada
          */
         public ListaEnlazada getData() {
             return this.data;
@@ -20,7 +20,7 @@ public class Queue {
 
         /**
          * Se delimita el valor del nodo
-         * @param data un array
+         * @param data una lista enlazada
          */
         public void setData(ListaEnlazada data) {
             this.data = data;
@@ -72,9 +72,9 @@ public class Queue {
     }
 
     /**
-     * Se inserta un array a la lista
+     * Se inserta una lista enlazada a la lista
      * en el primer lugar
-     * @param data un array
+     * @param data una lista enlazada
      */
     public void insertFirst(ListaEnlazada data) {
         Queue.Node newNode = new Queue.Node(data);
@@ -114,7 +114,7 @@ public class Queue {
     /**
      * Se borra un valor determinado de la lista
      * @param id identificacion del platillo a borrar
-     * @return el array que se borra
+     * @return el platillo que se borra
      */
     public ListaEnlazada delete(int id) {
         Queue.Node current = this.head;
@@ -141,8 +141,8 @@ public class Queue {
     }
 
     /**
-     * Metodo que añade un dato a la cola
-     * @param data
+     * Metodo que añade una lista enlazada
+     * @param data una lista enlazada
      */
     public void enqueue(ListaEnlazada data)
     {
@@ -164,8 +164,8 @@ public class Queue {
     }
 
     /**
-     * Se obtiene el array del primer nodo
-     * @return el array del primer nodo
+     * Se obtiene la lista enlazada del primer nodo
+     * @return la lista enlazada del primer nodo
      */
     public ListaEnlazada getFirst() {
         if (this.head == null) {
@@ -178,9 +178,9 @@ public class Queue {
 
     /**
      * Se determina si la lista contiene
-     * un array con determinados valores
+     * una lista enlazada con determinados valores
      * @param id identidficacion del platillo
-     * @return true si el array esta en la lista, false en caso contrario
+     * @return true si el id esta en la lista enlazada, false en caso contrario
      */
     public boolean contains(int id) {
         Queue.Node current = this.head;
@@ -197,8 +197,9 @@ public class Queue {
 
     /**
      * Se imprime en consola los
-     * valores del array de una lista
-     * enlazada de arrays.
+     * valores del id del primer 
+     * platillo de cada pedido 
+     * en la cola.
      */
     public void recorrerLista() {
         Queue.Node current = this.head;
@@ -217,8 +218,8 @@ public class Queue {
     }
 
     /**
-     * Se obtiene el array del primer nodo de una lista enlazada
-     * @return el array del primer nodo
+     * Se obtiene la primera lista enlazada de pedidos del primer nodo de una lista enlazada
+     * @return la lista enlazada del primer nodo
      */
     public ListaEnlazada getHead() {
         if (this.head == null) {
@@ -230,7 +231,7 @@ public class Queue {
     }
 
     /**
-     * Se obtiene el array del nodo
+     * Se obtiene la lista enlazada del nodo
      * de una lista enlazada dado un indice.
      * @param searchValue lugar o indice del arreglo que se quiere obtener
      * @return arreglo en la posicion del indice

@@ -47,11 +47,7 @@ public class Controller {
      * mediante firmata. Una vez conectado se
      * tiene un ciclo while que debe correr
      * en un Thread para leer los inputs del
-     * control. Los botones de direccion modifican
-     * las variables controli y controlj
-     * al presionar el boton para seleccionar se
-     * revela el espacio en la cuadricula donde se
-     * encuentran los indices controli y controlj.
+     * control. 
      *
      * @throws IOException
      * @throws InterruptedException
@@ -111,11 +107,8 @@ public class Controller {
 
                 /**
                  * Loop que registra cuando se presionan los
-                 * botones de direccion y seleccion. Al presionar
-                 * los botones de direccion se cambia el tamaño
-                 * del boton donde se encuentra el controli y
-                 * controlj para visualizar donde se va a
-                 * seleccionar.
+                 * deben encender los LEDS depende de que 
+                 * tan completados se encuentren los pedidos
                  */
                 while (controllerFuncionando) {
                     if (ServerApp.cantPedidos > 0) {;

@@ -806,6 +806,10 @@ public class ServerApp {
         timer.scheduleAtFixedRate(task, 0, 1000l); //hace que se corra el metodo run cada segundo sin delay
     }
 
+    /**
+     * Metodo que obtiene el tiempo transcurrido para la preparacion del pedido
+     * @return
+     */
     static int getTiempoPedidoActual() {
         int tiempo = 0;
         for (int i = 0; i < colaPedidos.getFirst().size(); i++) {
@@ -814,6 +818,10 @@ public class ServerApp {
         return tiempo;
     }
 
+    /**
+     * Metodo que obtiene el tiempo total para la preparacion del pedido
+     * @return tiempo
+     */
     static int getTiempoPedidoTotal() {
         int tiempo = 0;
         for (int i = 0; i < cantPedidos; i++) {
@@ -824,18 +832,31 @@ public class ServerApp {
         return tiempo;
     }
 
+    /**
+     * Metodo que obtiene el menu
+     * @return str
+     */
     static String getMenu() {
         String str = arbolPlatillos.getMenu(root);
         arbolPlatillos.resetStringMenu();
         return str;
     }
 
+    /**
+     * Metodo que obtiene la cantidad de platillos en el menu
+     * @return str
+     */
     static String cantPlatillosEnMenu() {
         String str = arbolPlatillos.getCantPlatillos(root);
         arbolPlatillos.resetCantPlatillos();
         return str;
     }
 
+    /**
+     * Metodo que convierte los segundos en el timer
+     * @param totalSecs
+     * @return timeString
+     */
     static String convertirSegEnTimer(int totalSecs) {
         int hours = totalSecs / 3600;
         int minutes = (totalSecs % 3600) / 60;

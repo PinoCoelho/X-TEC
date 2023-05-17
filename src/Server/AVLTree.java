@@ -250,7 +250,7 @@ public class AVLTree {
          * El metodo contains busca un nodo en el arbol AVL
          * @param node
          * @param id
-         * @return
+         * @return node
          */
         boolean contains(AVLNode node, int id) {
             if (node == null) {
@@ -468,10 +468,18 @@ public class AVLTree {
 
         static String menu = "";
 
+        /**
+         * Metodo que resetea el menu
+         */
         void resetStringMenu() {
             menu = "";
         }
 
+        /**
+         * Metodo que obtiene el menu
+         * @param node
+         * @return menu
+         */
         String getMenu(AVLNode node) {
             if (node != null) {
                 getMenu(node.left);
@@ -483,10 +491,18 @@ public class AVLTree {
 
         static int cantPlatillos = 0;
 
+        /**
+         * Metodo que reetea el contador con la cantidad de platillos
+         */
         void resetCantPlatillos() {
             cantPlatillos = 0;
         }
 
+        /**
+         * Metodo que obtiene la cantidad de platillos del contador
+         * @param node
+         * @return cantPlatillos
+         */
         String getCantPlatillos(AVLNode node) {
             if (node != null) {
                 getCantPlatillos(node.left);

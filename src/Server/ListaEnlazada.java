@@ -144,6 +144,10 @@ public class ListaEnlazada {
         return null;
     }
 
+    /**
+     * Metodo que inserta el ultimo nodo
+     * @param data
+     */
     public void insertLast(ServerApp.Platillo data)
     {
         Node newNode = new Node(data);
@@ -279,6 +283,11 @@ public class ListaEnlazada {
         }
     }
 
+    /**
+     * Metodo que copia la lista enlazada
+     * @param list
+     * @return new list
+     */
     public ListaEnlazada copy(ListaEnlazada list) {
         int counter = 0;
         ListaEnlazada newList = new ListaEnlazada();

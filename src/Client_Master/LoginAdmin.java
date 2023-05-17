@@ -167,6 +167,11 @@ public class LoginAdmin extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metodo que recibe la contraseña
+     * @param evt
+     */
+
     private void contraFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -212,6 +217,9 @@ public class LoginAdmin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+             * Metodo que visibiliza la ventana
+             */
             public void run() {
                 new LoginAdmin().setVisible(true);
             }

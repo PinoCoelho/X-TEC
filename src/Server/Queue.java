@@ -140,6 +140,10 @@ public class Queue {
         return null;
     }
 
+    /**
+     * Metodo que añade un dato a la cola
+     * @param data
+     */
     public void enqueue(ListaEnlazada data)
     {
         Queue.Node newNode = new Queue.Node(data);

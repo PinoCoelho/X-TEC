@@ -212,6 +212,9 @@ public class AddPlatillo extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
+            /**
+             * Metodo que visibiliza la ventana
+             */
             public void run() {
                 new AddPlatillo().setVisible(true);
             }

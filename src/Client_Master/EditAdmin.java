@@ -173,10 +173,19 @@ public class EditAdmin extends javax.swing.JFrame {
         newContraField.setText("");
     }
 
+    /**
+     * Metodo que recibe la nueva contraseña
+     * @param evt
+     */
+
     private void newContraFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
+    /**
+     * Metodo que recibe el nuevo nombre de usuario
+     * @param evt
+     */
     private void newNameFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -224,6 +233,9 @@ public class EditAdmin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+             * Metodo que visibiliza la ventana
+             */
             public void run() {
                 new EditAdmin().setVisible(true);
             }

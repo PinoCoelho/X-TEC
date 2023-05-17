@@ -6,6 +6,11 @@ import java.io.*;
 import java.net.*;
 
 public class Main {
+    /**
+     * El metodo main establece conexiones con el server
+     * @param args
+     * @throws ParseException
+     */
     public static void main(String args[]) throws ParseException {
         ServerApp.iniciarXML();
         ServerApp.iniciarJson();

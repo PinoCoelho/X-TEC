@@ -299,6 +299,9 @@ public class RealizarPedido extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+             * Metodo que visibiliza la ventana
+             */
             public void run() {
                 try {
                     new RealizarPedido().setVisible(true);

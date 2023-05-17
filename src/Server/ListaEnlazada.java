@@ -6,7 +6,7 @@ public class ListaEnlazada {
      * Clase para crear los nodos
      */
     class Node {
-        private ServerApp.Platillo data; // el data de los nodos es un array
+        private ServerApp.Platillo data; // el data de los nodos es un objeto platillo 
         private Node next; // next es el siguiente nodo
 
         public Node(ServerApp.Platillo data) {
@@ -16,7 +16,7 @@ public class ListaEnlazada {
 
         /**
          * Metodo para obtener los valores de un nodo
-         * @return el data de un nodo en forma de array
+         * @return el data de un nodo en forma de objeto
          */
         public ServerApp.Platillo getData() {
             return this.data;
@@ -24,7 +24,7 @@ public class ListaEnlazada {
 
         /**
          * Se delimita el valor del nodo
-         * @param data un array
+         * @param data un objeto platillo
          */
         public void setData(ServerApp.Platillo data) {
             this.data = data;
@@ -76,9 +76,9 @@ public class ListaEnlazada {
     }
 
     /**
-     * Se inserta un array a la lista
+     * Se inserta un objeto platillo a la lista
      * en el primer lugar
-     * @param data un array
+     * @param data un objeto platilo
      */
     public void insertFirst(ServerApp.Platillo data) {
         Node newNode = new Node(data);
@@ -89,7 +89,7 @@ public class ListaEnlazada {
 
     /**
      * Se borra el primer valor de la lista
-     * @return el valor que se borro en forma de array
+     * @return el valor que se borro en forma de objeto platillo
      */
     public ServerApp.Platillo deleteFirst() {
         if (this.head != null) {
@@ -118,7 +118,7 @@ public class ListaEnlazada {
     /**
      * Se borra un valor determinado de la lista
      * @param id identificacion del platillo a borrar
-     * @return el array que se borra
+     * @return el objeto platillo que se borra
      */
     public ServerApp.Platillo delete(int id) {
         Node current = this.head;
@@ -146,7 +146,7 @@ public class ListaEnlazada {
 
     /**
      * Metodo que inserta el ultimo nodo
-     * @param data
+     * @param data un objeto platillo
      */
     public void insertLast(ServerApp.Platillo data)
     {
@@ -166,8 +166,8 @@ public class ListaEnlazada {
     }
 
     /**
-     * Se obtiene el array del primer nodo
-     * @return el array del primer nodo
+     * Se obtiene el objeto platillo del primer nodo
+     * @return el objeto platillo del primer nodo
      */
     public ServerApp.Platillo getFirst() {
         if (this.head == null) {
@@ -180,9 +180,9 @@ public class ListaEnlazada {
 
     /**
      * Se determina si la lista contiene
-     * un array con determinados valores
+     * un objeto platillo con determinados valores
      * @param id identidficacion del platillo
-     * @return true si el array esta en la lista, false en caso contrario
+     * @return true si el objeto platillo esta en la lista, false en caso contrario
      */
     public boolean contains(int id) {
         Node current = this.head;
@@ -199,8 +199,8 @@ public class ListaEnlazada {
 
     /**
      * Se imprime en consola los
-     * valores del array de una lista
-     * enlazada de arrays.
+     * valores del id de los platillos de una lista
+     * enlazada de objetos platillo.
      */
     public void recorrerLista() {
         Node current = this.head;
@@ -219,8 +219,8 @@ public class ListaEnlazada {
     }
 
     /**
-     * Se obtiene el array del primer nodo de una lista enlazada
-     * @return el array del primer nodo
+     * Se obtiene el objeto platillo del primer nodo de una lista enlazada
+     * @return el objeto platillo del primer nodo
      */
     public ServerApp.Platillo getHead() {
         if (this.head == null) {
@@ -232,10 +232,10 @@ public class ListaEnlazada {
     }
 
     /**
-     * Se obtiene el array del nodo
+     * Se obtiene el objeto platillo del nodo
      * de una lista enlazada dado un indice.
-     * @param searchValue lugar o indice del arreglo que se quiere obtener
-     * @return arreglo en la posicion del indice
+     * @param searchValue lugar o indice de la lista que se quiere obtener
+     * @return objeto platillo en la posicion del indice
      */
     public ServerApp.Platillo get(int searchValue) {
         Node current = this.head;
@@ -285,8 +285,8 @@ public class ListaEnlazada {
 
     /**
      * Metodo que copia la lista enlazada
-     * @param list
-     * @return new list
+     * @param list una lista enlazada
+     * @return new list una nueva lista copiada igual al parametro
      */
     public ListaEnlazada copy(ListaEnlazada list) {
         int counter = 0;
